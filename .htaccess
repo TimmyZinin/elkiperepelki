@@ -1,0 +1,18 @@
+# elkiperepelki.ru — SpaceWeb (Apache под nginx)
+# Добавлено 22.09.2026 (Kimi, SEO-задача Тима): 301 со старых URL и канонизация хоста.
+
+RewriteEngine On
+
+# Канонизация: http → https, www → без www (одним хопом).
+# ВАЖНО: %{HTTPS} на SpaceWeb всегда off (nginx-прокси перед Apache) — петля.
+# Поэтому схема проверяется по заголовку X-Forwarded-Proto фронтового nginx.
+RewriteCond %{HTTP_HOST} ^www\. [NC,OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !^https$
+RewriteRule ^ https://elkiperepelki.ru%{REQUEST_URI} [L,R=301]
+
+# Старые URL WordPress-сайта (выпали в 404, остались в выдаче)
+RewriteRule ^derevyannyj-dom/?$ https://elkiperepelki.ru/ [L,R=301]
+RewriteRule ^apartamenty/?$ https://elkiperepelki.ru/houses/apartment/ [L,R=301]
+RewriteRule ^polskij-dom/?$ https://elkiperepelki.ru/houses/polish/ [L,R=301]
+RewriteRule ^skandinavskij-dom/?$ https://elkiperepelki.ru/houses/scandinavian/ [L,R=301]
+RewriteRule ^dop-uslugi/?$ https://elkiperepelki.ru/prices/ [L,R=301]
