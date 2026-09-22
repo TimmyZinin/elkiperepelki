@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>План базы — Ёлкино-Перепёлкино</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cuprum:wght@400;700&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF; --paper:#FAF7EE;
+  --green:#5B8C44; --green-dp:#1E5631; --green-ink:#0E2C18;
+  --yellow:#F4C430; --yellow-lt:#FFE89A;
+  --muted:rgba(14,44,24,0.58); --line:rgba(14,44,24,0.14);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--green-ink);
+  font-family:"Cuprum","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+#stage{width:1600px;margin:0 auto;background:var(--paper);position:relative}
+.head{padding:34px 60px 6px}
+.head .eyebrow{font-family:"PT Mono",monospace;font-size:12px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--green-dp);margin-bottom:6px}
+.head h1{font-family:"Yeseva One",Georgia,serif;font-style:italic;font-weight:400;
+  font-size:52px;line-height:1.02;letter-spacing:-.01em;margin:0;color:var(--green-ink)}
+.head .sub{font-family:"PT Mono",monospace;font-size:13px;letter-spacing:.06em;
+  color:var(--muted);margin-top:10px}
+.head .sub b{color:var(--green-dp)}
+svg{display:block}
+.lbl{font-family:"PT Mono",monospace;font-size:13px;font-weight:400;
+  fill:var(--green-ink);letter-spacing:.02em}
+.lblsub{font-family:"PT Mono",monospace;font-size:10px;fill:var(--muted);letter-spacing:.04em}
+.legend{position:absolute;left:60px;bottom:30px;font-family:"PT Mono",monospace;
+  font-size:11px;color:var(--muted);letter-spacing:.08em}
+.compass{font-family:"PT Mono",monospace}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="head">
+    <div class="eyebrow">База отдыха · Волга · Белый Городок</div>
+    <h1>План базы — Ёлкино-Перепёлкино</h1>
+    <div class="sub">черновик · <b>расположение уточняется</b></div>
+  </div>
+  <svg id="map" width="1600" height="1040" viewBox="0 0 1600 1040" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div class="legend">PT Mono · масштаб условный · вид:&nbsp;<b id="viewname"></b></div>
+</div>
+
+<script>
+/* ============================================================
+   Параметрический изо-план «Ёлкино-Перепёлкино»
+   VIEW = se | sw | top  (через ?view= или дефолт se)
+   ============================================================ */
+const params = new URLSearchParams(location.search);
+const VIEW = (params.get('view') || window.__VIEW__ || 'se').toLowerCase();
+document.getElementById('viewname').textContent = VIEW.toUpperCase();
+
+/* --- изо-проекция (классическая 2:1 изометрия) ---
+   gx,gy — координаты на земле (grid), gz — высота.
+   screenX = (gx - gy) * kx        (две оси земли расходятся диагоналями)
+   screenY = (gx + gy) * ky - gz*zk
+   fx/fy — флипы для разных ракурсов (зеркалим землю, не высоту). */
+const CFG = {
+  se:  { mir: 1, kx: 0.62, ky: 0.32, zk: 0.95 },   // ЮВ: фронт-угол справа-снизу
+  sw:  { mir:-1, kx: 0.62, ky: 0.32, zk: 0.95 },   // ЮЗ: зеркально по X (тот же объём)
+  top: { mir: 1, kx: 0.58, ky: 0.22, zk: 0.62 },   // сверху, уплощённая
+}[VIEW] || null;
+const C = CFG || { mir:1, kx:0.62, ky:0.32, zk:0.95 };
+
+const ORIGIN = { x: 800, y: 360 };
+const U = 11; // размер ячейки grid в px (до проекции)
+
+function iso(gx, gy, gz=0){
+  // оси земли всегда независимы: одна идёт «вправо-вниз», другая «влево-вниз».
+  // mir=-1 зеркалит сцену по горизонтали (вид с противоположного угла).
+  const X = C.mir * (gx - gy) * C.kx * U;
+  const Y = (gx + gy) * C.ky * U - (gz) * C.zk * U;
+  return { x: ORIGIN.x + X, y: ORIGIN.y + Y };
+}
+
+/* ---------- утилиты построения SVG ---------- */
+const NS='http://www.w3.org/2000/svg';
+const svg=document.getElementById('map');
+function el(tag,attrs={},parent=svg){
+  const n=document.createElementNS(NS,tag);
+  for(const k in attrs) n.setAttribute(k,attrs[k]);
+  parent.appendChild(n); return n;
+}
+function poly(pts,attrs={},parent=svg){
+  return el('polygon',Object.assign({points:pts.map(p=>p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ')},attrs),parent);
+}
+function path(d,attrs={},parent=svg){return el('path',Object.assign({d},attrs),parent);}
+
+/* затемнение/осветление hex */
+function shade(hex,amt){
+  let c=hex.replace('#',''); if(c.length===3)c=c.split('').map(x=>x+x).join('');
+  let r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16);
+  r=Math.max(0,Math.min(255,Math.round(r+amt)));
+  g=Math.max(0,Math.min(255,Math.round(g+amt)));
+  b=Math.max(0,Math.min(255,Math.round(b+amt)));
+  return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+/* ============================================================
+   DEFS — текстуры, тени, градиенты
+   ============================================================ */
+const defs=el('defs');
+defs.innerHTML=`
+  <radialGradient id="grassG" cx="50%" cy="38%" r="78%">
+    <stop offset="0%" stop-color="#A7CE7C"/>
+    <stop offset="55%" stop-color="#8FBF63"/>
+    <stop offset="100%" stop-color="#6FA049"/>
+  </radialGradient>
+  <linearGradient id="riverG" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#7FC3E8"/>
+    <stop offset="50%" stop-color="#5EAFDD"/>
+    <stop offset="100%" stop-color="#4E9BCC"/>
+  </linearGradient>
+  <linearGradient id="poolWater" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#7FD0EE"/>
+    <stop offset="100%" stop-color="#3FA9D6"/>
+  </linearGradient>
+  <pattern id="grain" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(18)">
+    <rect width="6" height="6" fill="none"/>
+    <circle cx="1" cy="1" r="0.5" fill="#5d8c3f" opacity="0.10"/>
+    <circle cx="4" cy="3.5" r="0.5" fill="#3f6e2a" opacity="0.08"/>
+  </pattern>
+  <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="4"/>
+  </filter>
+  <filter id="softlite" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="2.2"/>
+  </filter>
+`;
+
+/* ============================================================
+   ПЛОЩАДКА (земля) и ВОЛГА
+   ============================================================ */
+// границы участка в grid-координатах
+const LAND = { x0:-46, y0:-46, x1:46, y1:46 };
+
+function groundQuad(x0,y0,x1,y1,gz=0){
+  return [iso(x0,y0,gz),iso(x1,y0,gz),iso(x1,y1,gz),iso(x0,y1,gz)];
+}
+
+// большая тень участка под травой (для объёма плиты)
+const slab = groundQuad(LAND.x0,LAND.y0,LAND.x1,LAND.y1);
+// «толщина» земли — боковая грань спереди
+const slabFrontR = [
+  iso(LAND.x1,LAND.y0), iso(LAND.x1,LAND.y1),
+  {x:iso(LAND.x1,LAND.y1).x, y:iso(LAND.x1,LAND.y1).y+22},
+  {x:iso(LAND.x1,LAND.y0).x, y:iso(LAND.x1,LAND.y0).y+22}
+];
+const slabFrontL = [
+  iso(LAND.x0,LAND.y1), iso(LAND.x1,LAND.y1),
+  {x:iso(LAND.x1,LAND.y1).x, y:iso(LAND.x1,LAND.y1).y+22},
+  {x:iso(LAND.x0,LAND.y1).x, y:iso(LAND.x0,LAND.y1).y+22}
+];
+poly(slabFrontL,{fill:'#6c5235'});
+poly(slabFrontR,{fill:'#7a5d3c'});
+
+// сама травяная плита
+poly(slab,{fill:'url(#grassG)',stroke:'#3f6e2a','stroke-width':2.5,'stroke-linejoin':'round'});
+poly(slab,{fill:'url(#grain)'});
+
+// мягкие травяные «полоски» для текстуры
+for(let i=LAND.y0+6;i<LAND.y1;i+=9){
+  const a=iso(LAND.x0+4,i), b=iso(LAND.x1-4,i);
+  path(`M${a.x} ${a.y} Q ${(a.x+b.x)/2} ${(a.y+b.y)/2-4} ${b.x} ${b.y}`,
+    {fill:'none',stroke:'#7FB152',opacity:.22,'stroke-width':2});
+}
+
+// ВОЛГА — широкая полоса вдоль дальней (верхне-правой) кромки участка gy=LAND.y0
+const rivBack = LAND.y0;          // кромка воды у берега
+const RW = 22;                    // ширина реки в grid
+// берег: песчаная полоса между травой и водой
+poly([
+  iso(LAND.x0, rivBack), iso(LAND.x1, rivBack),
+  iso(LAND.x1, rivBack-2), iso(LAND.x0, rivBack-2)
+],{fill:'#E9D6A8',stroke:'#C9A26B','stroke-width':1.4,'stroke-linejoin':'round'});
+// сама река (уходит «вверх-назад» за кромку)
+const riverPts = [
+  iso(LAND.x0, rivBack-2),
+  iso(LAND.x1, rivBack-2),
+  iso(LAND.x1, rivBack-2-RW),
+  iso(LAND.x0, rivBack-2-RW),
+];
+poly(riverPts,{fill:'url(#riverG)',stroke:'#3E86B6','stroke-width':2,'stroke-linejoin':'round'});
+// волнистые блики на воде
+for(let i=0;i<7;i++){
+  const t=i/7, gx=LAND.x0+(LAND.x1-LAND.x0)*t+2;
+  const yo=4+(i%3)*5;
+  const p1=iso(gx, rivBack-2-yo), p2=iso(gx+7, rivBack-2-yo);
+  path(`M${p1.x} ${p1.y} q ${(p2.x-p1.x)/2} -3 ${p2.x-p1.x} 0`,
+    {fill:'none',stroke:'#CFEAF7',opacity:.7,'stroke-width':2,'stroke-linecap':'round'});
+}
+
+/* ============================================================
+   ДОРОЖКИ (песочно-кирпичные)
+   рисуем как утолщённые линии по grid-вейпоинтам
+   ============================================================ */
+function pathway(wps,w=6,color='#C9A26B'){
+  // строим ленту: две стороны
+  const left=[],right=[];
+  for(let i=0;i<wps.length;i++){
+    const a=iso(wps[i][0],wps[i][1]);
+    left.push(a);
+  }
+  const d='M'+left.map(p=>p.x.toFixed(1)+' '+p.y.toFixed(1)).join(' L ');
+  path(d,{fill:'none',stroke:color,'stroke-width':w,'stroke-linecap':'round','stroke-linejoin':'round',opacity:.92});
+  // кирпичный пунктир по центру
+  path(d,{fill:'none',stroke:'#B5532E','stroke-width':1.6,'stroke-linecap':'round',
+    'stroke-dasharray':'2 7',opacity:.65});
+}
+// главная аллея от въезда (низ) вверх и развилки
+pathway([[0,40],[0,20],[0,0],[2,-14],[6,-30]],11);
+pathway([[0,0],[-18,-4],[-30,-12]],9);   // влево к бане/скандинаву
+pathway([[2,-14],[20,-18],[34,-26]],9);  // вправо к домам/апартаментам
+pathway([[0,20],[-20,22],[-30,16]],8);   // к беседке/зверюшкам
+pathway([[0,20],[22,24],[30,18]],8);
+
+/* ============================================================
+   ОБЪЕКТЫ — рисовалки
+   Каждая функция возвращает «глубину» (gx+gy) для painter's algo,
+   но мы вызываем их уже в отсортированном порядке.
+   ============================================================ */
+
+// мягкая тень-эллипс под объектом
+function shadow(gx,gy,rx,ry){
+  const c=iso(gx,gy,0);
+  el('ellipse',{cx:c.x,cy:c.y+ry*0.55,rx:rx,ry:ry,fill:'#15331c',opacity:.18,filter:'url(#soft)'});
+}
+
+/* ИЗО-КОРОБКА (дом):
+   gx,gy — центр основания; w,d — ширина/глубина в grid; h — высота;
+   roof: 'gable'(двускатная)|'cone'|'flat'; wall/roofColor */
+function isoBox(o){
+  const {gx,gy,w,d,h,wall='#9c6b3f',roof='#2E7D46',roofType='gable',
+         ridge='x',windows=true,wcols=3,wrows=2,name,nsub,labelDir='r'}=o;
+  const hw=w/2, hd=d/2;
+  // тень
+  shadow(gx,gy,(w+d)*0.5*C.kx*U*0.6,(w+d)*0.28*C.ky*U*0.7);
+
+  // углы основания (плоскость земли)
+  const A=iso(gx-hw,gy-hd,0); // дальний-лев
+  const B=iso(gx+hw,gy-hd,0); // дальний-прав
+  const Cc=iso(gx+hw,gy+hd,0);// ближ-прав
+  const D=iso(gx-hw,gy+hd,0); // ближ-лев
+  // верх стен
+  const At=iso(gx-hw,gy-hd,h), Bt=iso(gx+hw,gy-hd,h),
+        Ct=iso(gx+hw,gy+hd,h), Dt=iso(gx-hw,gy+hd,h);
+
+  // какие 2 боковые грани видны зависит от ракурса — для se правая(Cc) и левая(D) к зрителю
+  // грань «право» (B-C)
+  poly([B,Cc,Ct,Bt],{fill:shade(wall,-34),stroke:shade(wall,-70),'stroke-width':1.6,'stroke-linejoin':'round'});
+  // грань «лево/перед» (D-C)
+  poly([D,Cc,Ct,Dt],{fill:shade(wall,-12),stroke:shade(wall,-70),'stroke-width':1.6,'stroke-linejoin':'round'});
+  // бревенчатая текстура на передней грани
+  const rows=Math.max(3,Math.round(h*1.1));
+  for(let i=1;i<rows;i++){
+    const t=i/rows;
+    const p1={x:D.x+(Dt.x-D.x)*t, y:D.y+(Dt.y-D.y)*t};
+    const p2={x:Cc.x+(Ct.x-Cc.x)*t, y:Cc.y+(Ct.y-Cc.y)*t};
+    path(`M${p1.x} ${p1.y} L ${p2.x} ${p2.y}`,{stroke:shade(wall,-34),'stroke-width':.8,opacity:.5});
+  }
+  // окна на передней грани
+  if(windows){
+    for(let r=0;r<wrows;r++) for(let c2=0;c2<wcols;c2++){
+      const u=(c2+1)/(wcols+1), v=0.30+0.42*r/Math.max(1,wrows-1);
+      // интерполяция по передней грани D->C (по u) и низ->верх (по v)
+      const baseL={x:D.x+(Cc.x-D.x)*u, y:D.y+(Cc.y-D.y)*u};
+      const topL ={x:Dt.x+(Ct.x-Dt.x)*u, y:Dt.y+(Ct.y-Dt.y)*u};
+      const cx=baseL.x+(topL.x-baseL.x)*v, cy=baseL.y+(topL.y-baseL.y)*v;
+      el('rect',{x:cx-5,y:cy-7,width:10,height:13,rx:1.5,fill:'#FFE89A',
+        stroke:shade(wall,-70),'stroke-width':1.2});
+    }
+  }
+
+  // КРЫША
+  if(roofType==='gable'){
+    const oh=0.9; // свес
+    if(ridge==='x'){ // конёк вдоль X (между дальней и ближней по Y)
+      const ridgeY=(gy);
+      const r1=iso(gx-hw-oh,ridgeY,h+w*0.42);
+      const r2=iso(gx+hw+oh,ridgeY,h+w*0.42);
+      const e1=iso(gx-hw-oh,gy-hd-oh,h); const e2=iso(gx+hw+oh,gy-hd-oh,h);
+      const e3=iso(gx+hw+oh,gy+hd+oh,h); const e4=iso(gx-hw-oh,gy+hd+oh,h);
+      // скат дальний
+      poly([e1,e2,r2,r1],{fill:shade(roof,18),stroke:shade(roof,-40),'stroke-width':1.6,'stroke-linejoin':'round'});
+      // скат ближний
+      poly([e4,e3,r2,r1],{fill:shade(roof,-22),stroke:shade(roof,-40),'stroke-width':1.6,'stroke-linejoin':'round'});
+      // конёк
+      path(`M${r1.x} ${r1.y} L ${r2.x} ${r2.y}`,{stroke:shade(roof,-50),'stroke-width':2});
+    } else { // конёк вдоль Y
+      const ridgeX=gx;
+      const r1=iso(ridgeX,gy-hd-oh,h+d*0.42);
+      const r2=iso(ridgeX,gy+hd+oh,h+d*0.42);
+      const e1=iso(gx-hw-oh,gy-hd-oh,h); const e2=iso(gx-hw-oh,gy+hd+oh,h);
+      const e3=iso(gx+hw+oh,gy+hd+oh,h); const e4=iso(gx+hw+oh,gy-hd-oh,h);
+      poly([e1,e2,r2,r1],{fill:shade(roof,-22),stroke:shade(roof,-40),'stroke-width':1.6,'stroke-linejoin':'round'});
+      poly([e4,e3,r2,r1],{fill:shade(roof,18),stroke:shade(roof,-40),'stroke-width':1.6,'stroke-linejoin':'round'});
+      path(`M${r1.x} ${r1.y} L ${r2.x} ${r2.y}`,{stroke:shade(roof,-50),'stroke-width':2});
+    }
+  } else if(roofType==='flat'){
+    poly([At,Bt,Ct,Dt],{fill:shade(roof,10),stroke:shade(roof,-40),'stroke-width':1.6,'stroke-linejoin':'round'});
+  }
+
+  // подпись
+  if(name){
+    const top=iso(gx, gy-hd, h+w*0.42+0.5);
+    label(name,nsub,gx,gy-hd,h+w*0.5, labelDir);
+  }
+  return gx+gy;
+}
+
+/* конусная ёлка */
+function spruce(gx,gy,scale=1){
+  shadow(gx,gy, 9*scale, 5*scale);
+  const base=iso(gx,gy,0);
+  const trunkH=0.7*scale, top=iso(gx,gy,(3.4)*scale);
+  // ствол
+  const tb=iso(gx,gy,0), tt=iso(gx,gy,trunkH);
+  path(`M${tb.x} ${tb.y} L ${tt.x} ${tt.y}`,{stroke:'#6b4a2a','stroke-width':3*scale,'stroke-linecap':'round'});
+  // 3 яруса конусов
+  const tiers=[{z0:0.5,z1:1.7,r:1.7},{z0:1.4,z1:2.6,r:1.25},{z0:2.3,z1:3.5,r:0.8}];
+  tiers.forEach((t,i)=>{
+    const zc0=t.z0*scale, zc1=t.z1*scale, r=t.r*scale;
+    const apex=iso(gx,gy,zc1);
+    const l=iso(gx-r,gy,zc0), rr=iso(gx+r,gy,zc0), f=iso(gx,gy+r*0.7,zc0+0.1*scale);
+    poly([l,f,rr,apex],{fill:i===0?'#2f5d2a':(i===1?'#37692f':'#3f7634'),
+      stroke:'#1d3f1a','stroke-width':1.2,'stroke-linejoin':'round'});
+    // блик
+    poly([apex,rr,f],{fill:'#4d8a3e',opacity:.5});
+  });
+}
+
+/* берёза */
+function birch(gx,gy,scale=1){
+  shadow(gx,gy,7*scale,4*scale);
+  const tb=iso(gx,gy,0), tt=iso(gx,gy,3*scale);
+  path(`M${tb.x} ${tb.y} L ${tt.x} ${tt.y}`,{stroke:'#EFEAE0','stroke-width':4*scale,'stroke-linecap':'round'});
+  // чёрточки на стволе
+  for(let i=1;i<5;i++){const p=iso(gx,gy,i*0.55*scale);
+    path(`M${p.x-3} ${p.y} l 6 0`,{stroke:'#3a3a36','stroke-width':1.1,opacity:.7});}
+  // крона
+  const c=iso(gx,gy,3.4*scale);
+  el('ellipse',{cx:c.x,cy:c.y,rx:14*scale,ry:11*scale,fill:'#88B85A',stroke:'#5a8a3a','stroke-width':1.4});
+  el('ellipse',{cx:c.x-6*scale,cy:c.y-3*scale,rx:7*scale,ry:6*scale,fill:'#9ECB6B',opacity:.7});
+}
+
+/* ============================================================
+   ПОДПИСИ (выноска-точка + жёлтая плашка)
+   ============================================================ */
+const labelLayer=el('g'); // рисуем поверх всего
+function label(text,sub,gx,gy,gz,dir='r'){
+  const anchor=iso(gx,gy,gz);
+  const dx = dir==='l' ? -64 : (dir==='c'?0:64);
+  const dy = dir==='up' ? -40 : -26;
+  const lx=anchor.x+dx, ly=anchor.y+dy;
+  // точка на объекте
+  el('circle',{cx:anchor.x,cy:anchor.y,r:3,fill:'#1E5631',stroke:'#FAF7EE','stroke-width':1.5},labelLayer);
+  // линия-выноска
+  path(`M${anchor.x} ${anchor.y} L ${lx} ${ly+9}`,{stroke:'#1E5631','stroke-width':1.4,opacity:.85},labelLayer);
+  // плашка
+  const w=Math.max(text.length*7.3+20, 70);
+  const h=sub?30:20;
+  const bx=dir==='l'?lx-w+10:(dir==='c'?lx-w/2:lx-10);
+  el('rect',{x:bx,y:ly-8,width:w,height:h,rx:5,fill:'#FFE89A',
+    stroke:'#1E5631','stroke-width':1.6},labelLayer);
+  const tx=bx+w/2;
+  const t=el('text',{x:tx,y:ly+ (sub?-0:6),'text-anchor':'middle',class:'lbl'},labelLayer);
+  t.textContent=text;
+  if(sub){const s=el('text',{x:tx,y:ly+14,'text-anchor':'middle',class:'lblsub'},labelLayer);
+    s.textContent=sub;}
+}
+
+/* ============================================================
+   СПЕЦ-ОБЪЕКТЫ
+   ============================================================ */
+// БАССЕЙН Intex на кирпичной площадке
+function pool(gx,gy){
+  const w=8,d=4; const hw=w/2,hd=d/2;
+  // кирпичная площадка
+  const padW=w+3, padD=d+3, phw=padW/2, phd=padD/2;
+  const pA=iso(gx-phw,gy-phd),pB=iso(gx+phw,gy-phd),pC=iso(gx+phw,gy+phd),pD=iso(gx-phw,gy+phd);
+  poly([pA,pB,pC,pD],{fill:'#C77B4E',stroke:'#8a4a2a','stroke-width':1.6,'stroke-linejoin':'round'});
+  // кирпичная расшивка
+  for(let i=1;i<5;i++){const t=i/5;
+    const a={x:pA.x+(pD.x-pA.x)*t,y:pA.y+(pD.y-pA.y)*t};
+    const b={x:pB.x+(pC.x-pB.x)*t,y:pB.y+(pC.y-pB.y)*t};
+    path(`M${a.x} ${a.y} L ${b.x} ${b.y}`,{stroke:'#a85d38','stroke-width':.9,opacity:.6});}
+  shadow(gx,gy,padW*C.kx*U*0.45,padD*C.ky*U*0.6);
+  // серый каркас (высота борта)
+  const bh=1.2;
+  const A=iso(gx-hw,gy-hd,0),B=iso(gx+hw,gy-hd,0),Cc=iso(gx+hw,gy+hd,0),D=iso(gx-hw,gy+hd,0);
+  const At=iso(gx-hw,gy-hd,bh),Bt=iso(gx+hw,gy-hd,bh),Ct=iso(gx+hw,gy+hd,bh),Dt=iso(gx-hw,gy+hd,bh);
+  // боковые грани каркаса (серые)
+  poly([B,Cc,Ct,Bt],{fill:'#9aa0a6',stroke:'#5f656b','stroke-width':1.4});
+  poly([D,Cc,Ct,Dt],{fill:'#b6bbc0',stroke:'#5f656b','stroke-width':1.4});
+  // вода (верх)
+  poly([At,Bt,Ct,Dt],{fill:'url(#poolWater)',stroke:'#2f8fbf','stroke-width':1.6});
+  // блики воды
+  poly([At,Bt,iso(gx,gy-hd*0.2,bh)],{fill:'#BDE8F7',opacity:.45});
+  path(`M${At.x+8} ${At.y+6} q 30 6 ${Bt.x-At.x-16} 2`,{fill:'none',stroke:'#fff',opacity:.5,'stroke-width':2});
+  // лесенка сбоку
+  const lx=iso(gx+hw,gy,bh), lb=iso(gx+hw+1.3,gy,0);
+  path(`M${lx.x} ${lx.y} L ${lb.x} ${lb.y}`,{stroke:'#d4d8db','stroke-width':3,'stroke-linecap':'round'});
+  path(`M${lx.x} ${lx.y-4} L ${lb.x} ${lb.y-4}`,{stroke:'#d4d8db','stroke-width':3,'stroke-linecap':'round'});
+  label('БАССЕЙН','каркасный · Intex',gx,gy-hd,bh+1,'r');
+}
+
+// БАННЫЙ ЧАН
+function hotTub(gx,gy){
+  shadow(gx,gy,16,8);
+  const r=2.4, bh=1.3;
+  // деревянная обвязка (низ)
+  const bot=iso(gx,gy,0), topc=iso(gx,gy,bh);
+  el('ellipse',{cx:bot.x,cy:bot.y,rx:r*C.kx*U,ry:r*C.ky*U,fill:'#8a5a30',stroke:'#5a3a1f','stroke-width':1.6});
+  // борт
+  el('path',{d:`M${bot.x-r*C.kx*U} ${bot.y} A ${r*C.kx*U} ${r*C.ky*U} 0 0 0 ${bot.x+r*C.kx*U} ${bot.y}
+    L ${bot.x+r*C.kx*U} ${bot.y-bh*C.zk*U} A ${r*C.kx*U} ${r*C.ky*U} 0 0 1 ${bot.x-r*C.kx*U} ${bot.y-bh*C.zk*U} Z`,
+    fill:'#9c6b3f',stroke:'#5a3a1f','stroke-width':1.4});
+  // вода
+  el('ellipse',{cx:topc.x,cy:topc.y,rx:r*C.kx*U*0.86,ry:r*C.ky*U*0.86,fill:'#5fae8f',stroke:'#3a7a5f','stroke-width':1.4});
+  el('ellipse',{cx:topc.x-4,cy:topc.y-2,rx:r*C.kx*U*0.4,ry:r*C.ky*U*0.35,fill:'#9fd8c0',opacity:.6});
+  // парок
+  for(let i=0;i<3;i++){const px=topc.x-8+i*8;
+    path(`M${px} ${topc.y-4} q 4 -8 0 -14 q -4 -6 2 -14`,{fill:'none',stroke:'#fff',opacity:.45,'stroke-width':2,'stroke-linecap':'round'});}
+  label('БАННЫЙ ЧАН','под звёздами',gx,gy-r,bh+2.2,'c');
+}
+
+// ДЕТСКАЯ ПЛОЩАДКА
+function playground(gx,gy){
+  shadow(gx,gy,40,20);
+  // мягкое покрытие
+  const pad=groundQuad(gx-5,gy-4,gx+5,gy+4);
+  poly(pad,{fill:'#F2C14E',opacity:.55,stroke:'#d99a2a','stroke-width':1.4,rx:4});
+  // горка
+  const t1=iso(gx-2,gy-1,0), top=iso(gx-2,gy-1,2.6), slideEnd=iso(gx+1.5,gy+1.5,0);
+  path(`M${top.x} ${top.y} L ${slideEnd.x} ${slideEnd.y}`,{stroke:'#E8533A','stroke-width':6,'stroke-linecap':'round'});
+  path(`M${t1.x} ${t1.y} L ${top.x} ${top.y}`,{stroke:'#3FA9D6','stroke-width':3});
+  el('circle',{cx:top.x,cy:top.y,r:4,fill:'#F4C430',stroke:'#1E5631','stroke-width':1.4});
+  // качели
+  const sw=iso(gx+3,gy-1,0), swt=iso(gx+3,gy-1,2.4);
+  path(`M${swt.x-10} ${swt.y} L ${sw.x-7} ${sw.y}`,{stroke:'#5B8C44','stroke-width':2.2});
+  path(`M${swt.x+10} ${swt.y} L ${sw.x+7} ${sw.y}`,{stroke:'#5B8C44','stroke-width':2.2});
+  path(`M${swt.x-10} ${swt.y} L ${swt.x+10} ${swt.y}`,{stroke:'#5B8C44','stroke-width':2.2});
+  path(`M${swt.x} ${swt.y} l -3 14`,{stroke:'#8a5a30','stroke-width':1.6});
+  el('rect',{x:swt.x-7,y:swt.y+12,width:8,height:3,fill:'#E8533A'});
+  label('ДЕТСКАЯ ПЛОЩАДКА','горка · качели',gx,gy-4,2.8,'c');
+}
+
+// БЕСЕДКА-БАРБЕКЮ
+function gazebo(gx,gy){
+  shadow(gx,gy,30,16);
+  const r=4, postH=2.6;
+  // настил
+  el('ellipse',{cx:iso(gx,gy).x,cy:iso(gx,gy).y,rx:r*C.kx*U,ry:r*C.ky*U,fill:'#b07d4a',stroke:'#6b4a2a','stroke-width':1.6});
+  // 4 столба
+  [[-r,-r],[r,-r],[r,r],[-r,r]].forEach(([dx,dy])=>{
+    const b=iso(gx+dx*0.8,gy+dy*0.8,0),t=iso(gx+dx*0.8,gy+dy*0.8,postH);
+    path(`M${b.x} ${b.y} L ${t.x} ${t.y}`,{stroke:'#7a5230','stroke-width':3,'stroke-linecap':'round'});
+  });
+  // конусная крыша
+  const apex=iso(gx,gy,postH+2.6);
+  const rim=[iso(gx-r,gy,postH),iso(gx,gy-r,postH),iso(gx+r,gy,postH),iso(gx,gy+r,postH)];
+  poly([rim[0],rim[1],apex],{fill:shade('#2E7D46',18),stroke:'#1d4f2c','stroke-width':1.4});
+  poly([rim[1],rim[2],apex],{fill:shade('#2E7D46',6),stroke:'#1d4f2c','stroke-width':1.4});
+  poly([rim[2],rim[3],apex],{fill:shade('#2E7D46',-20),stroke:'#1d4f2c','stroke-width':1.4});
+  poly([rim[3],rim[0],apex],{fill:shade('#2E7D46',-8),stroke:'#1d4f2c','stroke-width':1.4});
+  // мангал рядом
+  const mb=iso(gx+r+1.5,gy+1,0),mt=iso(gx+r+1.5,gy+1,1.2);
+  el('rect',{x:mt.x-7,y:mt.y-4,width:14,height:7,rx:1.5,fill:'#3a3a36',stroke:'#1a1a18','stroke-width':1.2});
+  path(`M${mt.x} ${mt.y-4} q 2 -8 -2 -12`,{fill:'none',stroke:'#bbb',opacity:.4,'stroke-width':2});
+  label('БАРБЕКЮ · БЕСЕДКА','мангалы',gx,gy+r,postH+0.5,'c');
+}
+
+// ЗАГОН ДЛЯ ЗВЕРЮШЕК
+function petting(gx,gy){
+  shadow(gx,gy,26,13);
+  const w=5,d=4,hw=w/2,hd=d/2;
+  const pen=groundQuad(gx-hw,gy-hd,gx+hw,gy+hd);
+  poly(pen,{fill:'#C8E090',stroke:'#7a9a4a','stroke-width':1.4});
+  // штакетник по периметру
+  const corners=[iso(gx-hw,gy-hd,0),iso(gx+hw,gy-hd,0),iso(gx+hw,gy+hd,0),iso(gx-hw,gy+hd,0)];
+  corners.forEach(c=>{const t=iso(0,0,0); });
+  // простой заборчик: точки
+  for(let i=0;i<=8;i++){const u=i/8;
+    const a={x:corners[3].x+(corners[2].x-corners[3].x)*u,y:corners[3].y+(corners[2].y-corners[3].y)*u};
+    path(`M${a.x} ${a.y} l 0 -7`,{stroke:'#fff','stroke-width':2,opacity:.9});
+  }
+  // зверюшки (кролик+утка)
+  const r1=iso(gx-1,gy,0);
+  el('circle',{cx:r1.x,cy:r1.y-4,r:4,fill:'#fff',stroke:'#777','stroke-width':1});
+  el('ellipse',{cx:r1.x,cy:r1.y-9,rx:1.5,ry:4,fill:'#fff',stroke:'#777','stroke-width':1});
+  const d1=iso(gx+1.5,gy+0.5,0);
+  el('circle',{cx:d1.x,cy:d1.y-3,r:3.5,fill:'#F4C430',stroke:'#c79a1a','stroke-width':1});
+  el('circle',{cx:d1.x+3,cy:d1.y-6,r:2.2,fill:'#F4C430',stroke:'#c79a1a','stroke-width':1});
+  path(`M${d1.x+5} ${d1.y-6} l 3 1`,{stroke:'#E8533A','stroke-width':2,'stroke-linecap':'round'});
+  label('ЗВЕРЮШКИ','кролики · утки · куры',gx,gy-hd,1.5,'l');
+}
+
+// КИНО ПОД ОТКРЫТЫМ НЕБОМ
+function cinema(gx,gy){
+  shadow(gx,gy,20,9);
+  const w=6,h=3.2;
+  const b1=iso(gx-w/2,gy,0),b2=iso(gx+w/2,gy,0),t1=iso(gx-w/2,gy,h),t2=iso(gx+w/2,gy,h);
+  poly([b1,b2,t2,t1],{fill:'#F7F4EC',stroke:'#1E5631','stroke-width':2});
+  poly([b1,b2,t2,t1],{fill:'#E9E4D6',opacity:.5});
+  // стойки
+  path(`M${b1.x} ${b1.y} l 0 8`,{stroke:'#5a3a1f','stroke-width':2.5});
+  path(`M${b2.x} ${b2.y} l 0 8`,{stroke:'#5a3a1f','stroke-width':2.5});
+  // лучик проектора
+  el('circle',{cx:(b1.x+b2.x)/2,cy:(t1.y+b1.y)/2,r:5,fill:'#F4C430',opacity:.7});
+  label('КИНО','экран · проектор',gx,gy,h+0.5,'l');
+}
+
+// ПАРКОВКА / ВЪЕЗД
+function parking(gx,gy){
+  const w=10,d=6,hw=w/2,hd=d/2;
+  const p=groundQuad(gx-hw,gy-hd,gx+hw,gy+hd);
+  poly(p,{fill:'#BFC4C7',stroke:'#8a9094','stroke-width':1.4});
+  // разметка
+  for(let i=-2;i<=2;i++){const a=iso(gx+i*1.6,gy-hd+0.5,0),b=iso(gx+i*1.6,gy+hd-0.5,0);
+    path(`M${a.x} ${a.y} L ${b.x} ${b.y}`,{stroke:'#fff','stroke-width':1.4,opacity:.8});}
+  // пара машинок
+  const car=(cx,cy,col)=>{const c=iso(cx,cy,0);
+    el('rect',{x:c.x-9,y:c.y-7,width:18,height:11,rx:3,fill:col,stroke:'#222','stroke-width':1.2});
+    el('rect',{x:c.x-5,y:c.y-5,width:10,height:5,rx:1.5,fill:'#bfe',opacity:.8});};
+  car(gx-2.5,gy-1,'#5B8C44'); car(gx+2.5,gy+1,'#E8533A');
+  label('ВЪЕЗД · ПАРКОВКА',null,gx,gy+hd,0.5,'c');
+}
+
+/* ============================================================
+   РАЗМЕЩЕНИЕ ОБЪЕКТОВ (grid coords) + painter's algo
+   gx растёт вправо, gy — «вглубь». Дальние = меньший gx+gy.
+   ============================================================ */
+const scene=[];
+
+// деревья по периметру (лес) — много
+const trees=[];
+function ring(){
+  // плотный лес вдоль дальнего края (у реки) и по бокам
+  for(let x=-44;x<=44;x+=4.5){ trees.push({t:'spruce',gx:x+(Math.random()*2-1),gy:-43+(Math.random()*2),s:0.85+Math.random()*0.5}); }
+  for(let y=-40;y<=42;y+=5){ trees.push({t:(Math.random()>.7?'birch':'spruce'),gx:-44+(Math.random()*2),gy:y,s:0.8+Math.random()*0.5}); }
+  for(let y=-40;y<=42;y+=5){ trees.push({t:(Math.random()>.7?'birch':'spruce'),gx:44+(Math.random()*2),gy:y,s:0.8+Math.random()*0.5}); }
+  for(let x=-40;x<=44;x+=5.5){ trees.push({t:(Math.random()>.6?'birch':'spruce'),gx:x,gy:43+(Math.random()*2),s:0.8+Math.random()*0.4}); }
+  // вкрапления внутри
+  const inner=[[-36,-20],[-34,8],[36,-10],[38,20],[-12,-34],[14,-32],[-24,28],[26,30],[8,34],[-8,30]];
+  inner.forEach(([x,y])=>trees.push({t:(Math.random()>.5?'birch':'spruce'),gx:x,gy:y,s:0.8+Math.random()*0.4}));
+}
+ring();
+trees.forEach(t=>scene.push({depth:t.gx+t.gy, draw:()=> t.t==='spruce'?spruce(t.gx,t.gy,t.s):birch(t.gx,t.gy,t.s)}));
+
+// здания и объекты
+const objs=[
+  // 1 АПАРТАМЕНТЫ — крупное вытянутое, верх-право
+  {depth:30+(-26), draw:()=>isoBox({gx:30,gy:-26,w:22,d:8,h:4.4,wall:'#b07d4a',roof:'#2E7D46',
+     roofType:'gable',ridge:'x',wcols:7,wrows:2,name:'АПАРТАМЕНТЫ',nsub:'2 этажа',labelDir:'r'})},
+  // 2 ДЕРЕВЯННЫЙ ДОМ (до 9) — право-центр, синеватая крыша
+  {depth:34+2, draw:()=>isoBox({gx:34,gy:2,w:11,d:9,h:3.6,wall:'#9c6b3f',roof:'#3C6B8C',
+     roofType:'gable',ridge:'y',wcols:3,wrows:2,name:'ДЕРЕВЯННЫЙ ДОМ',nsub:'до 9 чел',labelDir:'r'})},
+  // 3 ПОЛЬСКИЙ ДОМ (до 6) — правее-ниже
+  {depth:30+22, draw:()=>isoBox({gx:30,gy:22,w:9,d:7,h:3.2,wall:'#a8753f',roof:'#2E7D46',
+     roofType:'gable',ridge:'x',wcols:3,wrows:1,name:'ПОЛЬСКИЙ ДОМ',nsub:'до 6 чел',labelDir:'r'})},
+  // 4 СКАНДИНАВСКИЙ ДОМ (2+2) — лево-центр
+  {depth:-30+(-2), draw:()=>isoBox({gx:-30,gy:-2,w:8,d:7,h:3.0,wall:'#c08a52',roof:'#256b3a',
+     roofType:'gable',ridge:'y',wcols:2,wrows:1,name:'СКАНДИНАВСКИЙ ДОМ',nsub:'2 + 2',labelDir:'l'})},
+  // 5 БАНЯ — верх-лево
+  {depth:-26+(-28), draw:()=>isoBox({gx:-26,gy:-28,w:9,d:7,h:3.0,wall:'#9c6b3f',roof:'#2E7D46',
+     roofType:'gable',ridge:'x',wcols:2,wrows:1,name:'БАНЯ',nsub:'на дровах',labelDir:'l'})},
+  // здание у бассейна (зелёная крыша) рядом с баней
+  {depth:-12+(-26), draw:()=>isoBox({gx:-12,gy:-26,w:9,d:6,h:2.8,wall:'#b07d4a',roof:'#2E7D46',
+     roofType:'gable',ridge:'x',wcols:3,wrows:1,name:null})},
+  // 7 БАССЕЙН — кирпичная площадка вплотную к зданию у бани
+  {depth:-12+(-19), draw:()=>pool(-12,-19)},
+  // 6 БАННЫЙ ЧАН — возле бани
+  {depth:-20+(-22), draw:()=>hotTub(-20,-22)},
+  // 11 КИНО — возле чана
+  {depth:-34+(-12), draw:()=>cinema(-34,-12)},
+  // 8 ДЕТСКАЯ ПЛОЩАДКА — центр
+  {depth:0+2, draw:()=>playground(0,2)},
+  // 10 ЗВЕРЮШКИ — край возле скандинава/детской (лево-низ)
+  {depth:-26+18, draw:()=>petting(-26,18)},
+  // 9 БАРБЕКЮ/БЕСЕДКА — низ-центр
+  {depth:2+30, draw:()=>gazebo(2,30)},
+  // ВЪЕЗД/ПАРКОВКА — низ
+  {depth:0+40, draw:()=>parking(0,40)},
+];
+objs.forEach(o=>scene.push(o));
+
+// painter's algorithm — от дальних (меньший depth) к ближним
+scene.sort((a,b)=>a.depth-b.depth);
+scene.forEach(s=>s.draw());
+
+// поднимаем слой подписей наверх
+svg.appendChild(labelLayer);
+
+/* подписи берега/реки */
+(function riverLabels(){
+  const a=iso(-30,-44,0);
+  const t=el('text',{x:a.x,y:a.y-6,'text-anchor':'middle',
+    'font-family':'Yeseva One, serif','font-style':'italic','font-size':'34','fill':'#3E86B6','opacity':'.85'},labelLayer);
+  t.textContent='р. Волга';
+  // берег: рыбалка/SUP/лодки
+  label('БЕРЕГ ВОЛГИ','рыбалка · SUP · лодки',24,-43,0.5,'c');
+})();
+
+/* компас */
+(function compass(){
+  const c={x:1490,y:150};
+  el('circle',{cx:c.x,cy:c.y,r:30,fill:'#FAF7EE',stroke:'#1E5631','stroke-width':2},svg);
+  el('text',{x:c.x,y:c.y-12,'text-anchor':'middle',class:'compass','font-size':'13','fill':'#1E5631','font-weight':'bold'},svg).textContent='С';
+  el('text',{x:c.x,y:c.y+24,'text-anchor':'middle',class:'compass','font-size':'11','fill':'#888'},svg).textContent='Ю';
+  el('polygon',{points:`${c.x},${c.y-22} ${c.x-5},${c.y+2} ${c.x+5},${c.y+2}`,fill:'#E8533A'},svg);
+  el('polygon',{points:`${c.x},${c.y+18} ${c.x-5},${c.y+2} ${c.x+5},${c.y+2}`,fill:'#9aa0a6'},svg);
+})();
+
+// сигнал готовности для скриншота
+window.__rendered__=true;
+document.body.setAttribute('data-rendered','1');
+</script>
+  <script src="/hermes-widget.js" defer></script>
+  <script src="/nav-mobile.js" defer></script>
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})
+(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+ym(95602086,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/95602086" style="position:absolute;left:-9999px" alt=""></div></noscript>
+</body>
+</html>

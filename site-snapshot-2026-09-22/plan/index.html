@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>План базы — Ёлкино-Перепёлкино</title>
+<meta name="description" content="Интерактивная схема-вид сверху базы отдыха Ёлкино-Перепёлкино: дома, баня, бассейн, чан, беседки — по спутниковому снимку, в масштабе.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cuprum:wght@400;500;700&family=PT+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+<style>
+  :root{
+    --sand:#E9E0CC;       /* дорожки */
+    --sand-dk:#D8CBAE;
+    --lawn:#9BC36F;        /* газон */
+    --lawn-dk:#7DA956;
+    --water:#5FА8D8;
+    --water2:#4E97CC;
+    --roof:#BFA888;
+    --roof-dk:#A88E68;
+    --wood:#C9A66B;
+    --shadow:rgba(14,44,24,.18);
+  }
+  body{background:var(--paper);overflow-x:hidden}
+
+  .plan-wrap{max-width:1180px;margin:0 auto;padding:18px 16px 60px}
+
+  .plan-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;margin:6px 2px 14px;
+  }
+  .plan-head h1{
+    font-family:"Yeseva One",serif;font-style:italic;font-weight:400;
+    color:var(--green-ink);line-height:1.02;letter-spacing:-.02em;
+    font-size:clamp(26px,5.4vw,46px);margin:0;
+  }
+  .plan-head .sub{
+    font-family:"PT Mono",monospace;font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--green-dp);margin-top:6px;
+  }
+  .legend{
+    font-family:"Cuprum",sans-serif;font-size:13px;color:var(--muted);
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  }
+  .legend i{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+
+  .stage{
+    position:relative;
+    border-radius:22px;overflow:hidden;
+    box-shadow:0 18px 50px -22px rgba(14,44,24,.45), 0 2px 0 rgba(255,255,255,.6) inset;
+    background:#cfe0bd;
+    border:1px solid var(--line);
+  }
+  svg.plan{display:block;width:100%;height:auto;touch-action:manipulation}
+
+  /* clickable objects */
+  .obj{cursor:pointer;transition:transform .15s ease, filter .15s ease}
+  .obj *{transition:fill .15s ease, opacity .15s ease}
+  .obj:hover, .obj:focus-visible{outline:none}
+  .obj:hover .hl, .obj:focus-visible .hl{
+    stroke:var(--yellow);stroke-width:3.5;opacity:1;
+  }
+  .obj .hl{fill:none;stroke:var(--yellow);stroke-width:0;opacity:0;transition:stroke-width .12s,opacity .12s}
+  .obj:hover{filter:drop-shadow(0 6px 10px rgba(14,44,24,.28))}
+  .obj-lab{
+    font-family:"Cuprum",sans-serif;font-weight:700;fill:var(--green-ink);
+    paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:3px;stroke-linejoin:round;
+    pointer-events:none;
+  }
+  .obj-ico{font-size:15px;pointer-events:none;dominant-baseline:central;text-anchor:middle}
+
+  /* compass */
+  .compass{font-family:"PT Mono",monospace}
+
+  /* ===== Modal card ===== */
+  .ov{
+    position:fixed;inset:0;z-index:90;display:none;
+    background:rgba(14,44,24,.46);backdrop-filter:blur(3px);
+    align-items:center;justify-content:center;padding:18px;
+  }
+  .ov.open{display:flex;animation:fade .18s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .card{
+    background:var(--paper);border-radius:20px;max-width:430px;width:100%;
+    overflow:hidden;box-shadow:0 30px 70px -20px rgba(14,44,24,.6);
+    transform:translateY(8px);animation:rise .22s ease forwards;
+    border:1px solid var(--line);
+  }
+  @keyframes rise{to{transform:translateY(0)}}
+  .card-img{width:100%;height:222px;object-fit:cover;background:var(--lawn-dk);display:block}
+  .card-body{padding:18px 20px 22px}
+  .card-eyebrow{
+    font-family:"PT Mono",monospace;font-size:10.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--green-dp);
+  }
+  .card h2{
+    font-family:"Yeseva One",serif;font-style:italic;font-weight:400;
+    font-size:27px;color:var(--green-ink);margin:5px 0 8px;line-height:1.05;
+  }
+  .card p{font-family:"Cuprum",sans-serif;font-size:15.5px;color:var(--green-ink);opacity:.9;margin:0 0 14px}
+  .price{
+    display:inline-block;font-family:"Cuprum",sans-serif;font-weight:700;font-size:15px;
+    color:var(--green-dp);background:var(--yellow-lt);border:1px solid var(--yellow);
+    padding:5px 12px;border-radius:999px;margin-bottom:16px;
+  }
+  .card-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    font-family:"Cuprum",sans-serif;font-weight:700;font-size:14px;letter-spacing:.02em;
+    padding:11px 18px;border-radius:12px;text-align:center;transition:transform .12s,filter .12s;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-book{background:var(--green);color:#fff;flex:1 1 auto}
+  .btn-book:hover{filter:brightness(1.06)}
+  .btn-more{background:transparent;color:var(--green-dp);border:1.5px solid var(--green-dp)}
+  .btn-more:hover{background:rgba(30,86,49,.07)}
+  .card-x{
+    position:absolute;top:12px;right:14px;width:36px;height:36px;border-radius:50%;
+    background:rgba(255,255,255,.92);color:var(--green-ink);font-size:20px;line-height:36px;
+    text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.18);z-index:2;
+  }
+  .card-wrap{position:relative}
+
+  @media(max-width:560px){
+    .plan-wrap{padding:12px 10px 48px}
+    .stage{border-radius:16px}
+    .card-img{height:185px}
+    .legend{font-size:12px;gap:9px}
+  }
+</style>
+</head>
+<body>
+<div class="plan-wrap">
+  <div class="plan-head">
+    <div>
+      <h1>План базы — Ёлкино-Перепёлкино</h1>
+      <div class="sub">по спутнику · в масштабе · 1&nbsp;м&nbsp;≈&nbsp;7&nbsp;px</div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--lawn)"></i>газон</span>
+      <span><i style="background:var(--sand)"></i>дорожки</span>
+      <span><i style="background:var(--water)"></i>вода</span>
+      <span><i style="background:#2f6e3a"></i>лес</span>
+    </div>
+  </div>
+
+  <div class="stage">
+    <!-- viewBox in plan-units. Portrait, matches satellite orientation. -->
+    <svg class="plan" viewBox="0 0 760 980" role="img" aria-label="Схема базы отдыха, вид сверху">
+      <defs>
+        <radialGradient id="lawnG" cx="50%" cy="42%" r="75%">
+          <stop offset="0%" stop-color="#A6CC79"/>
+          <stop offset="100%" stop-color="#7DA956"/>
+        </radialGradient>
+        <linearGradient id="waterG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6FB4E0"/>
+          <stop offset="100%" stop-color="#3E8AC4"/>
+        </linearGradient>
+        <linearGradient id="volgaG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5AA0D2"/>
+          <stop offset="100%" stop-color="#3B82BC"/>
+        </linearGradient>
+        <pattern id="trees" width="34" height="34" patternUnits="userSpaceOnUse">
+          <rect width="34" height="34" fill="#2c6536"/>
+          <circle cx="9" cy="9" r="8.5" fill="#388043"/>
+          <circle cx="26" cy="18" r="9" fill="#2f6e3a"/>
+          <circle cx="13" cy="27" r="8" fill="#347a40"/>
+          <circle cx="30" cy="31" r="6" fill="#3d8a49"/>
+        </pattern>
+        <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0E2C18" flood-opacity="0.22"/>
+        </filter>
+      </defs>
+
+      <!-- ===== FOREST background (whole canvas) ===== -->
+      <rect x="0" y="0" width="760" height="980" fill="url(#trees)"/>
+
+      <!-- ===== VOLGA — direction only (река далеко, ~500 м к западу) =====
+           Вода НЕ показывается: на левом поле — стрелка-направление и подпись.
+           Левая кромка остаётся лесом (общий фон #trees). -->
+      <g class="volga-dir" pointer-events="none">
+        <!-- стрелка влево (на запад, к реке) -->
+        <g transform="translate(40,500)">
+          <line x1="40" y1="0" x2="-8" y2="0" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".92"/>
+          <polygon points="-26,0 -6,-10 -6,10" fill="#fff" opacity=".92"/>
+        </g>
+        <text x="44" y="470" class="compass" fill="#fff" font-size="14" font-style="italic"
+              opacity=".95" font-family="'Yeseva One',serif">Волга</text>
+        <text x="44" y="540" fill="#fff" font-size="12" opacity=".9"
+              font-family="'Cuprum',sans-serif" font-weight="700">≈ 500 м</text>
+      </g>
+
+      <!-- ===== Site clearing (sand apron around lawn) ===== -->
+      <!-- Outer property apron -->
+      <rect x="116" y="74" width="486" height="836" rx="26" fill="#E3D9C2" stroke="#cdbf9f" stroke-width="2"/>
+
+      <!-- Perimeter concrete path -->
+      <rect x="150" y="118" width="418" height="744" rx="20" fill="#EDE5D2"/>
+      <!-- Central LAWN -->
+      <rect x="196" y="170" width="326" height="640" rx="16" fill="url(#lawnG)" stroke="#6f9a4c" stroke-width="2"/>
+      <!-- faint mowing stripes -->
+      <g opacity="0.10" stroke="#3f6e2c" stroke-width="20">
+        <line x1="240" y1="170" x2="240" y2="810"/>
+        <line x1="320" y1="170" x2="320" y2="810"/>
+        <line x1="400" y1="170" x2="400" y2="810"/>
+        <line x1="480" y1="170" x2="480" y2="810"/>
+      </g>
+
+      <!-- =================================================================
+           LEFT LONG SIDE (top→bottom): pool (top-left corner) → banya → apartments
+           Scale ~ 1m = 7px. Pool 9.75x4.88 -> 52x40. 12.5m gap pool↔apartments (banya between)
+           ================================================================= -->
+
+      <!-- POOL — Intex blue rectangle. Перемещён ВВЕРХ к верхнему краю участка (стрелка вверх) -->
+      <g class="obj" data-key="pool" tabindex="0" role="button" aria-label="Бассейн">
+        <rect class="hl" x="156" y="86" width="60" height="48" rx="6"/>
+        <rect x="160" y="90" width="52" height="40" rx="5" fill="#2f6e8c" filter="url(#ds)"/>
+        <rect x="163" y="93" width="46" height="34" rx="4" fill="url(#waterG)"/>
+        <path d="M166,110 q11,-7 22,0 t22,0" fill="none" stroke="#fff" stroke-width="1.3" opacity=".5"/>
+        <text class="obj-lab" x="186" y="150" font-size="12" text-anchor="middle">Бассейн</text>
+      </g>
+
+      <!-- BANYA — long building with woodshed canopy, between pool and apartments -->
+      <g class="obj" data-key="banya" tabindex="0" role="button" aria-label="Баня">
+        <rect class="hl" x="120" y="214" width="92" height="116" rx="6"/>
+        <!-- woodshed canopy (lighter, outer) -->
+        <rect x="124" y="292" width="84" height="32" rx="4" fill="var(--wood)" opacity=".9" filter="url(#ds)"/>
+        <!-- banya body -->
+        <rect x="124" y="220" width="70" height="74" rx="5" fill="#9a6b3f" filter="url(#ds)"/>
+        <rect x="128" y="224" width="62" height="66" rx="4" fill="#b07d4c"/>
+        <text class="obj-ico" x="159" y="256">🔥</text>
+        <text class="obj-lab" x="166" y="345" font-size="13" text-anchor="middle">Баня</text>
+      </g>
+
+      <!-- CHAN — hot tub. Перемещён ВВЕРХ, рядом с бассейном (стрелка вверх) -->
+      <g class="obj" data-key="chan" tabindex="0" role="button" aria-label="Банный чан">
+        <rect class="hl" x="244" y="92" width="44" height="44" rx="22"/>
+        <circle cx="266" cy="114" r="19" fill="#6b4a2a" filter="url(#ds)"/>
+        <circle cx="266" cy="114" r="14" fill="#c98a4e"/>
+        <circle cx="266" cy="114" r="14" fill="none" stroke="#8a5e34" stroke-width="2"/>
+        <text class="obj-ico" x="266" y="114" font-size="13">♨️</text>
+        <text class="obj-lab" x="266" y="150" font-size="12" text-anchor="middle">Чан</text>
+      </g>
+
+      <!-- APARTMENTS — long 2-storey, down the LEFT long side (below banya) -->
+      <g class="obj" data-key="apartment" tabindex="0" role="button" aria-label="Апартаменты">
+        <rect class="hl" x="120" y="372" width="78" height="248" rx="6"/>
+        <rect x="124" y="378" width="70" height="240" rx="5" fill="var(--roof-dk)" filter="url(#ds)"/>
+        <rect x="124" y="378" width="70" height="240" rx="5" fill="var(--roof)"/>
+        <line x1="159" y1="378" x2="159" y2="618" stroke="#8d7550" stroke-width="2"/>
+        <g opacity=".55" stroke="#8d7550" stroke-width="1.4">
+          <line x1="124" y1="420" x2="194" y2="420"/><line x1="124" y1="462" x2="194" y2="462"/><line x1="124" y1="504" x2="194" y2="504"/><line x1="124" y1="546" x2="194" y2="546"/><line x1="124" y1="588" x2="194" y2="588"/>
+        </g>
+        <text class="obj-ico" x="159" y="498">🏨</text>
+        <text class="obj-lab" x="159" y="638" font-size="14" text-anchor="middle">Апартаменты</text>
+      </g>
+
+      <!-- =================================================================
+           RIGHT LONG SIDE: houses among trees
+           ================================================================= -->
+
+      <!-- WOODEN A-frame (до 9) -->
+      <g class="obj" data-key="wooden" tabindex="0" role="button" aria-label="Деревянный дом">
+        <rect class="hl" x="322" y="118" width="74" height="76" rx="6"/>
+        <polygon points="359,124 394,188 324,188" fill="#7a5230" filter="url(#ds)"/>
+        <polygon points="359,132 388,184 330,184" fill="#a06d3e"/>
+        <polygon points="359,132 359,184 330,184" fill="#b57c47"/>
+        <text class="obj-ico" x="359" y="172" font-size="13">🏚️</text>
+        <text class="obj-lab" x="359" y="207" font-size="13" text-anchor="middle">Деревянный</text>
+      </g>
+
+      <!-- POLISH house. Перемещён ВЛЕВО внутрь поляны (стрелка влево в газон) -->
+      <g class="obj" data-key="polish" tabindex="0" role="button" aria-label="Польский дом">
+        <rect class="hl" x="406" y="372" width="68" height="62" rx="6"/>
+        <rect x="410" y="378" width="60" height="48" rx="5" fill="#9c5b3a" filter="url(#ds)"/>
+        <rect x="413" y="382" width="54" height="40" rx="4" fill="#c47a4e"/>
+        <polygon points="410,378 470,378 440,366" fill="#8a4d31"/>
+        <text class="obj-ico" x="440" y="403" font-size="13">🏠</text>
+        <text class="obj-lab" x="440" y="445" font-size="13" text-anchor="middle">Польский</text>
+      </g>
+
+      <!-- SCANDINAVIAN house (2+2) -->
+      <g class="obj" data-key="scandinavian" tabindex="0" role="button" aria-label="Скандинавский дом">
+        <rect class="hl" x="556" y="540" width="64" height="62" rx="6"/>
+        <rect x="560" y="546" width="56" height="48" rx="5" fill="#4a4f52" filter="url(#ds)"/>
+        <rect x="563" y="550" width="50" height="40" rx="4" fill="#6f7679"/>
+        <polygon points="560,546 616,546 588,532" fill="#3a3e40"/>
+        <text class="obj-ico" x="588" y="572" font-size="13">🏡</text>
+        <text class="obj-lab" x="588" y="613" font-size="12" text-anchor="middle">Скандинавский</text>
+      </g>
+
+      <!-- BBQ / gazebo (between houses) -->
+      <g class="obj" data-key="bbq" tabindex="0" role="button" aria-label="Беседка и барбекю">
+        <rect class="hl" x="558" y="650" width="52" height="52" rx="6"/>
+        <polygon points="584,656 612,684 556,684" fill="#a8895a" filter="url(#ds)"/>
+        <rect x="566" y="684" width="36" height="14" fill="#c9a66b"/>
+        <text class="obj-ico" x="584" y="694" font-size="12">🍖</text>
+        <text class="obj-lab" x="584" y="715" font-size="12" text-anchor="middle">Беседка · BBQ</text>
+      </g>
+
+      <!-- PLAYGROUND. Перемещена ВНИЗ к нижней части поляны (стрелка вниз к въезду) -->
+      <g class="obj" data-key="playground" tabindex="0" role="button" aria-label="Детская площадка">
+        <rect class="hl" x="286" y="724" width="40" height="40" rx="8"/>
+        <rect x="290" y="728" width="32" height="32" rx="7" fill="#E7A93B" opacity=".92" filter="url(#ds)"/>
+        <text class="obj-ico" x="306" y="744" font-size="13">🛝</text>
+        <text class="obj-lab" x="306" y="776" font-size="11" text-anchor="middle">Площадка</text>
+      </g>
+
+      <!-- ZOO / rabbits -->
+      <g class="obj" data-key="zoo" tabindex="0" role="button" aria-label="Зверюшки">
+        <rect class="hl" x="612" y="466" width="44" height="40" rx="8"/>
+        <rect x="616" y="470" width="36" height="32" rx="6" fill="#8a6b3d" opacity=".92" filter="url(#ds)"/>
+        <g stroke="#6e552f" stroke-width="1.5" opacity=".7">
+          <line x1="616" y1="480" x2="652" y2="480"/><line x1="624" y1="470" x2="624" y2="502"/><line x1="644" y1="470" x2="644" y2="502"/>
+        </g>
+        <text class="obj-ico" x="634" y="486" font-size="12">🐇</text>
+        <text class="obj-lab" x="634" y="518" font-size="11" text-anchor="middle">Зверюшки</text>
+      </g>
+
+      <!-- CINEMA — open-air. Перемещено ВНИЗ ближе к въезду (большая стрелка вниз) -->
+      <g class="obj" data-key="cinema" tabindex="0" role="button" aria-label="Кино под открытым небом">
+        <rect class="hl" x="406" y="724" width="58" height="44" rx="6"/>
+        <rect x="410" y="730" width="50" height="30" rx="3" fill="#23303a" filter="url(#ds)"/>
+        <rect x="413" y="733" width="44" height="24" rx="2" fill="#5b7a8c"/>
+        <text class="obj-ico" x="435" y="746" font-size="12">🎬</text>
+        <text class="obj-lab" x="435" y="780" font-size="11" text-anchor="middle">Кино</text>
+      </g>
+
+      <!-- =================================================================
+           BOTTOM END: entrance, security, parking, dome tent
+           ================================================================= -->
+
+      <!-- DOME TENT (white) -->
+      <g class="obj" data-key="tent" tabindex="0" role="button" aria-label="Шатёр">
+        <ellipse class="hl" cx="300" cy="876" rx="34" ry="26"/>
+        <path d="M270,888 a30,34 0 0 1 60,0 Z" fill="#f3efe6" stroke="#cfc6b2" stroke-width="2" filter="url(#ds)"/>
+        <path d="M300,852 L300,888 M278,888 q22,-22 44,0" fill="none" stroke="#d8cfba" stroke-width="1.5"/>
+        <text class="obj-lab" x="300" y="912" font-size="12" text-anchor="middle">Шатёр</text>
+      </g>
+
+      <!-- PARKING -->
+      <g class="obj-static">
+        <rect x="360" y="846" width="120" height="52" rx="6" fill="#cfc6b0" stroke="#b3a98c" stroke-width="1.5"/>
+        <g fill="#7d8a93">
+          <rect x="368" y="854" width="22" height="12" rx="2"/><rect x="396" y="854" width="22" height="12" rx="2"/>
+          <rect x="424" y="854" width="22" height="12" rx="2"/><rect x="452" y="854" width="22" height="12" rx="2"/>
+          <rect x="368" y="878" width="22" height="12" rx="2"/><rect x="396" y="878" width="22" height="12" rx="2"/>
+        </g>
+        <text class="obj-lab" x="420" y="916" font-size="12" text-anchor="middle" fill="#0E2C18"
+              stroke="rgba(255,255,255,.85)" stroke-width="3" paint-order="stroke" font-family="Cuprum" font-weight="700">Парковка</text>
+      </g>
+
+      <!-- SECURITY / gate -->
+      <g class="obj-static">
+        <rect x="196" y="858" width="40" height="34" rx="4" fill="#8d9aa0" filter="url(#ds)"/>
+        <text class="obj-ico" x="216" y="875" font-size="11">🛡️</text>
+        <text class="obj-lab" x="216" y="908" font-size="11" text-anchor="middle" fill="#0E2C18"
+              stroke="rgba(255,255,255,.85)" stroke-width="3" paint-order="stroke" font-family="Cuprum" font-weight="700">Охрана · въезд</text>
+      </g>
+      <!-- gate opening -->
+      <rect x="244" y="900" width="80" height="10" rx="3" fill="#b3a98c"/>
+
+      <!-- ===== COMPASS / North arrow (top-right) ===== -->
+      <g transform="translate(688,118)">
+        <circle r="26" fill="rgba(250,247,238,.92)" stroke="#1E5631" stroke-width="1.5"/>
+        <polygon points="0,-19 6,2 0,-3 -6,2" fill="#1E5631"/>
+        <polygon points="0,19 6,-2 0,3 -6,-2" fill="#bcae8e"/>
+        <text x="0" y="-29" class="compass" font-size="11" text-anchor="middle" fill="#1E5631" font-weight="700">С</text>
+      </g>
+
+      <!-- scale bar -->
+      <g transform="translate(150,940)">
+        <line x1="0" y1="0" x2="70" y2="0" stroke="#0E2C18" stroke-width="2"/>
+        <line x1="0" y1="-4" x2="0" y2="4" stroke="#0E2C18" stroke-width="2"/>
+        <line x1="70" y1="-4" x2="70" y2="4" stroke="#0E2C18" stroke-width="2"/>
+        <text x="35" y="-7" class="compass" font-size="10" text-anchor="middle" fill="#0E2C18">10 м</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="ov" id="ov" role="dialog" aria-modal="true">
+  <div class="card card-wrap" id="card">
+    <button class="card-x" id="cardX" aria-label="Закрыть">×</button>
+    <img class="card-img" id="cImg" src="" alt="">
+    <div class="card-body">
+      <div class="card-eyebrow" id="cEye">ОБЪЕКТ</div>
+      <h2 id="cTitle"></h2>
+      <p id="cDesc"></p>
+      <div class="price" id="cPrice"></div>
+      <div class="card-actions">
+        <a class="btn btn-book" href="/#book">Забронировать</a>
+        <a class="btn btn-more" id="cMore" href="#">Подробнее</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  apartment:{t:"Апартаменты", e:"ПРОЖИВАНИЕ · 2 ЭТАЖА",
+    d:"Длинное двухэтажное здание у поляны. Несколько номеров с удобствами — для пар и компаний.",
+    p:"от 5 000 ₽ / ночь", url:"/houses/apartment/", img:"/img/apartament/apartament_1.webp"},
+  polish:{t:"Польский дом", e:"ДОМ · ДО 6 ГОСТЕЙ",
+    d:"Уютный коттедж среди деревьев. Кухня, спальни, своя терраса.",
+    p:"от 9 000 ₽ / ночь", url:"/houses/polish/", img:"/img/polskiy/polskiy_1.webp"},
+  scandinavian:{t:"Скандинавский дом", e:"ДОМ · 2 + 2",
+    d:"Лаконичный дом в скандинавском стиле для семьи или двух пар.",
+    p:"от 7 000 ₽ / ночь", url:"/houses/scandinavian/", img:"/img/skandinavsky/skandinavsky_1.webp"},
+  wooden:{t:"Деревянный дом", e:"A-FRAME · ДО 9 ГОСТЕЙ",
+    d:"Просторный деревянный дом-шалаш под соснами. Большая компания поместится.",
+    p:"от 11 500 ₽ / ночь", url:"/houses/wooden/", img:"/img/derevyanny/derevyanny_2.webp"},
+  banya:{t:"Баня", e:"ПАР · ДРОВА",
+    d:"Настоящая дровяная баня с навесом-дровником. Парная, комната отдыха, выход к поляне.",
+    p:"от 2 500 ₽ / час", url:"/banya/", img:"/img/banya/banya_3.webp"},
+  chan:{t:"Банный чан", e:"ГОРЯЧИЙ ЧАН · НА ДРОВАХ",
+    d:"Чан с горячей водой под открытым небом. Особенно хорош зимой и вечером.",
+    p:"от 1 500 ₽ / час", url:"/chan/", img:"/img/misha/1718060.webp"},
+  pool:{t:"Бассейн", e:"ОТКРЫТЫЙ · ЛЕТО",
+    d:"Большой каркасный бассейн Intex (9,75 × 4,88 м) рядом с баней. Для гостей базы.",
+    p:"для гостей бесплатно", url:"/pool/", img:"/img/misha/1718050.webp"},
+  playground:{t:"Детская площадка", e:"ДЕТЯМ",
+    d:"Игровая площадка на территории — горки, качели. Прямо у поляны.",
+    p:"бесплатно", url:"/playground/", img:"/img/misha/1718080.webp"},
+  zoo:{t:"Зверюшки", e:"МИНИ-ЗООУГОЛОК",
+    d:"Загон с кроликами и другими питомцами. Детям можно покормить.",
+    p:"бесплатно", url:"/rabbits-zoo/", img:"/img/misha/1718080.webp"},
+  bbq:{t:"Беседка · Барбекю", e:"ОТДЫХ · МАНГАЛ",
+    d:"Беседка с мангалом и зоной барбекю между домами. Аренда мангала по запросу.",
+    p:"от 500 ₽", url:"/bbq/", img:"/img/misha/1718120.webp"},
+  cinema:{t:"Кино под открытым небом", e:"ВЕЧЕР · ЭКРАН",
+    d:"Большой экран на поляне — летние киновечера под звёздами.",
+    p:"по запросу", url:"/cinema/", img:"/img/chan/chan_3.webp"},
+  tent:{t:"Шатёр", e:"ИВЕНТЫ · БАНКЕТЫ",
+    d:"Белый купольный шатёр у въезда — для праздников, банкетов и больших компаний.",
+    p:"по запросу", url:"/events/", img:"/img/misha/1718120.webp"}
+};
+
+const ov = document.getElementById('ov');
+const card = document.getElementById('card');
+function openCard(key){
+  const o = DATA[key]; if(!o) return;
+  document.getElementById('cImg').src = o.img;
+  document.getElementById('cImg').alt = o.t;
+  document.getElementById('cEye').textContent = o.e;
+  document.getElementById('cTitle').textContent = o.t;
+  document.getElementById('cDesc').textContent = o.d;
+  document.getElementById('cPrice').textContent = o.p;
+  document.getElementById('cMore').href = o.url;
+  ov.classList.add('open');
+}
+function closeCard(){ ov.classList.remove('open'); }
+
+document.querySelectorAll('.obj').forEach(el=>{
+  const key = el.getAttribute('data-key');
+  el.addEventListener('click', ()=>openCard(key));
+  el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openCard(key);} });
+});
+document.getElementById('cardX').addEventListener('click', closeCard);
+ov.addEventListener('click', e=>{ if(e.target===ov) closeCard(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCard(); });
+</script>
+  <script src="/hermes-widget.js" defer></script>
+  <script src="/nav-mobile.js" defer></script>
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})
+(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+ym(95602086,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/95602086" style="position:absolute;left:-9999px" alt=""></div></noscript>
+</body>
+</html>

@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /baza/
+Disallow: /vendomat.html
+Disallow: /plan/scene3d.html
+
+User-agent: YandexBot
+Allow: /
+Disallow: /baza/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /baza/
+
+Sitemap: https://elkiperepelki.ru/sitemap.xml

@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ёлкино-Перепёлкино — база отдыха на Волге, 140 км от Москвы</title>
+<meta name="description" content="Семейная база отдыха «Ёлкино-Перепёлкино» на слиянии Хотчи и Волги. Сосновый бор, дровяная баня, банный чан с кинотеатром. 140 км от Москвы.">
+<link rel="canonical" href="https://elkiperepelki.ru/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://elkiperepelki.ru/"/>
+<meta property="og:title" content="Ёлкино-Перепёлкино — семейная база отдыха на Волге"/>
+<meta property="og:description" content="Сосновый бор, дровяная баня, банный чан с кинотеатром под открытым небом. 4 дома до 28 человек. 140 км от Москвы по Дмитровке."/>
+<meta property="og:image" content="https://elkiperepelki.ru/img/misha-fresh/og_home.webp"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:site_name" content="Ёлкино-Перепёлкино"/>
+<meta property="og:locale" content="ru_RU"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Ёлкино-Перепёлкино","description":"Семейная база отдыха на слиянии рек Хотча и Волга. Сосновый бор, дровяная баня, банный чан с кинотеатром под открытым небом, бассейн, рыбалка. 4 дома до 28 человек.","url":"https://elkiperepelki.ru/","telephone":"+79051267668","email":"mik.zinin@yandex.ru","image":"https://elkiperepelki.ru/img/misha-fresh/og_home.webp","priceRange":"5500-15000 RUB","address":{"@type":"PostalAddress","addressCountry":"RU","addressRegion":"Тверская область","addressLocality":"деревня Кочнево","streetAddress":"Кимрский район"},"geo":{"@type":"GeoCoordinates","latitude":56.85,"longitude":37.36},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Банный чан с кинотеатром","value":true},{"@type":"LocationFeatureSpecification","name":"Дровяная баня","value":true},{"@type":"LocationFeatureSpecification","name":"Бассейн","value":true},{"@type":"LocationFeatureSpecification","name":"Рыбалка","value":true},{"@type":"LocationFeatureSpecification","name":"Wi-Fi","value":true},{"@type":"LocationFeatureSpecification","name":"Парковка","value":true}],"founder":{"@type":"Person","name":"Михаил Зинин"},"foundingDate":"2010"}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Cuprum:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=PT+Mono&display=swap" />
+<link rel="stylesheet" href="brand.css" />
+
+<style>
+body{background:var(--paper);color:var(--green-ink)}
+:root{
+  --max:1440px;
+}
+
+.hd{position:sticky;top:0;z-index:50;background:var(--yellow);border-bottom:2px solid var(--green-ink)}
+.hd-in{max-width:var(--max);margin:0 auto;padding:14px 32px;display:grid;
+  grid-template-columns:auto 1fr auto auto;align-items:center;gap:32px}
+.hd nav{display:flex;gap:22px;justify-content:center;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap}
+.hd nav a:hover{color:var(--green-dp)}
+.hd-logo{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:26px;color:var(--green-ink);letter-spacing:-0.014em}
+.hd-logo .d{color:var(--green-dp)}
+.hd-phone{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:17px;color:var(--green-ink);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:"Cuprum";
+  font-weight:800;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
+  border:2px solid var(--green-ink);padding:12px 18px;border-radius:0;background:var(--green-ink);color:#fff;transition:transform .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--green-ink)}
+.btn--yellow{background:var(--yellow);color:var(--green-ink)}
+.btn--ghost{background:transparent;color:var(--green-ink)}
+.btn--lg{padding:18px 28px;font-size:14px;letter-spacing:0.1em}
+
+.banner{padding:9px 32px;background:var(--green-ink);color:var(--yellow);text-align:center;
+  font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;border-bottom:2px solid var(--green-ink)}
+.banner a{color:#fff;border-bottom:1px solid #fff;padding-bottom:1px;margin-left:8px}
+
+/* HERO — full-bleed yellow with massive type */
+.hero{position:relative;background:var(--yellow);color:var(--green-ink);padding:48px 32px 0;
+  border-bottom:2px solid var(--green-ink);overflow:hidden}
+.hero-in{max-width:var(--max);margin:0 auto}
+.hero-top{display:grid;grid-template-columns:auto auto 1fr;gap:24px;align-items:start;font-size:11px;
+  letter-spacing:0.22em;text-transform:uppercase;font-weight:700;margin-bottom:24px}
+.hero-top .iss{text-align:right;justify-self:end}
+.hero h1{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;
+  font-size:clamp(72px,12vw,220px);line-height:0.84;letter-spacing:-0.03em;margin:0;color:var(--green-ink);text-wrap:balance}
+.hero h1 .reg{font-style:normal;color:var(--green-dp)}
+.hero h1 .neg{font-style:italic;color:#fff;-webkit-text-stroke:3px var(--green-ink)}
+.hero-photo-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:32px -32px 0;
+  border-top:2px solid var(--green-ink)}
+.hero-photo{aspect-ratio:1/1;overflow:hidden;border-right:2px solid var(--green-ink);position:relative}
+.hero-photo:last-child{border-right:none}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo-cap{position:absolute;left:14px;bottom:14px;color:#fff;font-size:10px;
+  letter-spacing:0.22em;text-transform:uppercase;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,0.6)}
+
+.hero-bottom{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding:28px 0 36px;
+  border-top:2px solid var(--green-ink);align-items:end}
+.hero-lede{font-size:18px;line-height:1.5;color:var(--green-ink);font-weight:500;max-width:560px}
+.hero-anchor{font-family:"Yeseva One",serif;font-weight:700;font-size:48px;color:var(--green-ink);line-height:0.95;letter-spacing:-0.018em}
+.hero-anchor small{display:block;font-family:"Cuprum";font-style:normal;font-size:11px;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--green-dp);font-weight:700;margin-top:6px}
+.hero-cta{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+
+/* TRUST — strip with poster grid */
+.trust{background:var(--green-ink);color:var(--yellow);padding:18px 32px;border-bottom:2px solid var(--green-ink)}
+.trust-in{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  font-size:13px;font-weight:700;letter-spacing:0.04em}
+.trust-in > div{padding:0 22px;border-left:1px solid rgba(244,196,48,0.4)}
+.trust-in > div:first-child{border-left:none}
+.trust-in .v{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:22px;color:#fff;line-height:1}
+.trust-in .y{color:var(--yellow);font-style:normal}
+.trust-in .l{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,196,48,0.75);font-weight:700;margin-top:4px}
+
+/* SECTIONS */
+.s{padding:0;border-bottom:2px solid var(--green-ink)}
+.s-in{max-width:var(--max);margin:0 auto;padding:64px 32px}
+.s-h{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:32px;margin-bottom:48px;
+  padding-bottom:24px;border-bottom:2px solid var(--green-ink)}
+.s-h .num{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:80px;line-height:0.8;color:var(--yellow);letter-spacing:-0.02em}
+.s-h h2{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;
+  font-size:clamp(40px,6.4vw,84px);line-height:0.95;letter-spacing:-0.022em;margin:0;color:var(--green-ink);text-wrap:balance}
+.s-h h2 .y{color:var(--green-dp)}
+.s-h .r{max-width:340px;font-size:15px;color:var(--green-ink);line-height:1.55;font-weight:500;text-align:right}
+
+/* SEGMENTS — bold blocks */
+.segs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--green-ink)}
+.seg{padding:32px 26px 28px;background:#fff;border-right:2px solid var(--green-ink);transition:background .2s}
+.seg:last-child{border-right:none}
+.seg:hover{background:var(--yellow)}
+.seg-r{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:36px;color:var(--green-dp);line-height:1}
+.seg h4{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:28px;line-height:1.05;
+  margin:18px 0 6px;color:var(--green-ink);letter-spacing:-0.015em}
+.seg-t{font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--green-dp)}
+.seg p{font-size:14px;line-height:1.55;color:var(--green-ink);margin:16px 0 0;font-weight:500}
+
+/* BIG FEATURE — full-bleed photo + giant overlay type */
+.bf-section{padding:0;background:var(--green-ink);border-bottom:2px solid var(--green-ink)}
+.bf{position:relative;overflow:hidden;aspect-ratio:21/10;min-height:520px;color:#fff}
+.bf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bf::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,rgba(14,44,24,0.7) 0%,rgba(14,44,24,0.45) 50%,transparent 75%)}
+/* Split-вариант: фото целиком без обрезки + текст рядом */
+.bf-split{position:relative;overflow:hidden;background:var(--green-ink);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;aspect-ratio:auto;min-height:560px}
+.bf-split::after{display:none}
+.bf-split > img{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center;display:block;align-self:stretch}
+.bf-split .bf-in{position:relative;z-index:2;padding:56px;max-width:none;height:100%;display:flex;flex-direction:column;justify-content:center;background:var(--green-ink)}
+@media (max-width:820px){
+  .bf-split{grid-template-columns:1fr;min-height:auto}
+  .bf-split > img{max-height:520px}
+  .bf-split .bf-in{padding:36px 24px}
+}
+.bf-in{position:relative;z-index:2;padding:56px;max-width:var(--max);margin:0 auto;height:100%;
+  display:flex;flex-direction:column;justify-content:flex-end}
+.bf-l{font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--yellow);font-weight:800;margin-bottom:18px}
+.bf h3{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:clamp(48px,7vw,120px);
+  line-height:0.88;letter-spacing:-0.025em;margin:0 0 22px;color:#fff;text-wrap:balance}
+.bf h3 .y{color:var(--yellow)}
+.bf p{font-size:18px;line-height:1.55;color:rgba(255,255,255,0.92);margin:0;max-width:560px;font-weight:500}
+.bf-meta{margin-top:24px;display:inline-flex;gap:14px;flex-wrap:wrap;font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow)}
+.bf-meta span{padding:6px 12px;border:1.5px solid var(--yellow)}
+
+/* FEATURES — magazine grid */
+.feats{display:grid;grid-template-columns:repeat(12,1fr);gap:0;border:2px solid var(--green-ink)}
+.feat{position:relative;overflow:hidden;border-right:2px solid var(--green-ink);border-bottom:2px solid var(--green-ink);min-height:300px;display:flex;flex-direction:column}
+.feat:nth-child(1){grid-column:span 6;grid-row:span 2;min-height:520px}
+.feat:nth-child(2){grid-column:span 3}
+.feat:nth-child(3){grid-column:span 3;border-right:none}
+.feat:nth-child(4){grid-column:span 3;border-bottom:none}
+.feat:nth-child(5){grid-column:span 3;border-bottom:none}
+.feat:nth-child(6){grid-column:span 6;border-right:none;border-bottom:none}
+.feat-img{flex:1;overflow:hidden;position:relative}
+.feat-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.feat:hover .feat-img img{transform:scale(1.04)}
+.feat-body{padding:18px 22px 20px;background:#fff;border-top:2px solid var(--green-ink)}
+.feat-l{font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--green-dp)}
+.feat h4{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:22px;line-height:1.05;margin:6px 0 6px;color:var(--green-ink);letter-spacing:-0.012em}
+.feat p{font-size:13px;line-height:1.5;color:var(--green-ink);margin:0;font-weight:500}
+.feat:nth-child(1) .feat-body{padding:24px 28px 26px}
+.feat:nth-child(1) h4{font-size:32px}
+.feat:nth-child(1) p{font-size:14px}
+
+/* HOUSES — poster grid */
+.houses{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--green-ink)}
+.house{position:relative;border-right:2px solid var(--green-ink);overflow:hidden;display:flex;flex-direction:column;background:#fff}
+.house:last-child{border-right:none}
+.house-img{aspect-ratio:4/5;overflow:hidden;position:relative;border-bottom:2px solid var(--green-ink)}
+.house-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.house:hover .house-img img{transform:scale(1.04)}
+.house-num{position:absolute;top:14px;left:14px;background:var(--yellow);color:var(--green-ink);
+  padding:6px 10px;font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:18px;line-height:1;border:1.5px solid var(--green-ink)}
+.house-body{padding:22px 24px 22px;flex:1;display:flex;flex-direction:column}
+.house h3{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:26px;line-height:1.04;
+  margin:0 0 4px;color:var(--green-ink);letter-spacing:-0.014em}
+.house-tag{font-size:11px;font-weight:600;letter-spacing:0.04em;color:var(--green-dp)}
+.house p{font-size:13px;line-height:1.55;color:var(--green-ink);margin:12px 0;flex:1;font-weight:500}
+.house-foot{padding-top:14px;border-top:2px solid var(--green-ink);display:flex;justify-content:space-between;align-items:center}
+.house-price{font-family:"Yeseva One",serif;font-weight:700;font-style:italic;font-size:24px;color:var(--green-ink);letter-spacing:-0.01em}
+.house-price small{font-family:"Cuprum";font-style:normal;font-weight:700;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-dp);margin-left:4px}
+.house-cta{padding:9px 14px;background:var(--green-ink);color:#fff;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase}
+
+/* PULL */
+.pull{padding:80px 32px;background:var(--yellow);text-align:center;border-bottom:2px solid var(--green-ink);position:relative;overflow:hidden}
+.pull blockquote{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;max-width:1100px;margin:0 auto;
+  font-size:clamp(36px,4.8vw,72px);line-height:1.05;letter-spacing:-0.024em;color:var(--green-ink);text-wrap:balance}
+.pull blockquote::before{content:'«';color:var(--green-dp)}.pull blockquote::after{content:'»';color:var(--green-dp)}
+.pull cite{display:block;margin-top:24px;font-style:normal;font-family:"Cuprum";
+  font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--green-ink);font-weight:800}
+
+/* AROUND */
+.around{display:grid;grid-template-columns:1.3fr 1fr;gap:0;align-items:stretch;border:2px solid var(--green-ink)}
+.around-img{aspect-ratio:auto;overflow:hidden;border-right:2px solid var(--green-ink)}
+.around-img img{width:100%;height:100%;object-fit:cover;display:block}
+.around-list{list-style:none;padding:0;margin:0;background:#fff;display:flex;flex-direction:column}
+.around-list li{padding:18px 24px;border-top:2px solid var(--green-ink);display:grid;
+  grid-template-columns:90px 1fr;gap:18px;align-items:start;flex:1}
+.around-list li:first-child{border-top:none}
+.around-list .km{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:22px;color:var(--green-dp);line-height:1;letter-spacing:-0.01em}
+.around-list .nm{font-family:"Yeseva One",serif;font-weight:700;font-size:17px;color:var(--green-ink);letter-spacing:-0.01em}
+.around-list .nt{font-size:13px;color:var(--green-ink);opacity:0.78;margin-top:3px;line-height:1.5;font-weight:500}
+
+/* PRICES */
+.prices-tg{display:inline-flex;border:2px solid var(--green-ink);margin-bottom:24px}
+.prices-tg button{background:transparent;border:none;color:var(--green-ink);padding:11px 22px;
+  font-family:"Cuprum";font-size:12px;font-weight:800;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;border-right:2px solid var(--green-ink)}
+.prices-tg button:last-child{border-right:none}
+.prices-tg button.on{background:var(--green-ink);color:var(--yellow)}
+.prices-tbl{width:100%;border-collapse:collapse;border:2px solid var(--green-ink);background:#fff;table-layout:fixed}
+.prices-tbl th,.prices-tbl td{padding:18px 22px;text-align:left;border-bottom:2px solid var(--green-ink);word-wrap:break-word}
+.prices-tbl tr:last-child td{border-bottom:none}
+.prices-tbl th{font-family:"Cuprum";font-weight:800;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-ink);background:var(--yellow);border-bottom-color:var(--green-ink)}
+.prices-tbl th+th,.prices-tbl td+td{text-align:right;border-left:2px solid var(--green-ink)}
+.prices-tbl .nm{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:22px;color:var(--green-ink);letter-spacing:-0.01em}
+.prices-tbl .nm small{display:block;font-family:"Cuprum";font-style:normal;font-size:12px;color:var(--green-dp);margin-top:2px;font-weight:600}
+.prices-tbl .pv{font-family:"Yeseva One",serif;font-weight:700;font-size:22px;color:var(--green-ink);letter-spacing:-0.01em;white-space:nowrap}
+.prices-tbl .pv small{font-family:"Cuprum";font-weight:800;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-dp);margin-left:4px;white-space:nowrap}
+@media (max-width:768px){
+  .prices-tbl th,.prices-tbl td{padding:10px 8px;font-size:12px}
+  .prices-tbl th{font-size:9px;letter-spacing:0.04em;padding:8px 6px}
+  .prices-tbl .nm{font-size:14px;letter-spacing:-0.01em}
+  .prices-tbl .nm small{font-size:10px;letter-spacing:0.04em}
+  .prices-tbl .pv{font-size:14px}
+  .prices-tbl .pv small{font-size:9px;letter-spacing:0.04em;margin-left:2px}
+  .prices-tbl a{padding:6px 8px !important;font-size:9px !important;letter-spacing:0.04em !important}
+}
+.prices-notes{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 32px}
+.prices-notes div{font-size:14px;line-height:1.5;color:var(--green-ink);padding-left:18px;position:relative;font-weight:500}
+.prices-notes div::before{content:'·';position:absolute;left:0;color:var(--green-dp);font-weight:800}
+
+/* REVIEWS — magazine columns */
+.revs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--green-ink)}
+.rev{padding:28px 26px 26px;background:#fff;border-right:2px solid var(--green-ink);display:flex;flex-direction:column}
+.rev:last-child{border-right:none}
+.rev .stars{color:var(--green-dp);font-size:14px;letter-spacing:5px;margin-bottom:14px;font-weight:700}
+.rev .text{font-family:"Yeseva One",serif;font-style:italic;font-size:16px;line-height:1.5;color:var(--green-ink);margin:0 0 18px;flex:1}
+.rev .who{padding-top:14px;border-top:2px solid var(--green-ink)}
+.rev .nm{font-family:"Yeseva One",serif;font-weight:700;font-style:italic;font-size:16px;color:var(--green-ink);letter-spacing:-0.01em}
+.rev .wh{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green-dp);margin-top:2px;font-weight:700}
+
+/* FAQ */
+.faq{padding:0;border-bottom:2px solid var(--green-ink)}
+.faq-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:0;max-width:var(--max);margin:0 auto}
+.faq-l-col{background:var(--green-ink);color:var(--yellow);padding:64px 56px}
+.faq-l-col .l{font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--yellow);font-weight:800;margin-bottom:14px}
+.faq-l-col h2{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:clamp(40px,5vw,64px);line-height:0.96;margin:0 0 18px;color:#fff;letter-spacing:-0.02em}
+.faq-l-col p{font-size:15px;color:rgba(255,255,255,0.78);max-width:300px;line-height:1.6;font-weight:500}
+.faq-r-col{background:#fff;padding:24px 56px}
+.faq-item{padding:22px 0;border-bottom:2px solid var(--green-ink)}
+.faq-item:last-child{border-bottom:none}
+.faq-item summary{list-style:none;cursor:pointer;font-family:"Yeseva One",serif;font-weight:700;font-style:italic;
+  font-size:22px;letter-spacing:-0.01em;display:flex;justify-content:space-between;align-items:center;color:var(--green-ink)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-family:"Cuprum";font-weight:800;font-size:22px;color:var(--green-dp)}
+.faq-item[open] summary::after{content:'−'}
+.faq-item p{font-size:15px;line-height:1.6;margin:12px 0 0;color:var(--green-ink);opacity:0.85;font-weight:500}
+
+/* CTA */
+.cta{position:relative;padding:96px 32px;border-bottom:2px solid var(--green-ink);background:var(--green-ink);color:#fff;overflow:hidden}
+.cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.6}
+.cta::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,rgba(14,44,24,0.8),rgba(14,44,24,0.6))}
+.cta-in{position:relative;z-index:2;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.cta h2{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:clamp(48px,7vw,108px);line-height:0.92;letter-spacing:-0.024em;margin:14px 0 22px;color:#fff;text-wrap:balance}
+.cta h2 .y{color:var(--yellow)}
+.cta p{font-size:19px;line-height:1.55;color:rgba(255,255,255,0.88);max-width:520px;margin:0 0 28px;font-weight:500}
+.bf-form{background:#fff;color:var(--green-ink);padding:30px 32px;border:2px solid var(--yellow)}
+.bf-form h3{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:24px;letter-spacing:-0.01em;margin:0 0 4px}
+.bf-form .sub{font-size:13px;color:var(--green-dp);margin-bottom:18px;font-weight:600}
+.bf-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.bf-r1{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:8px}
+.bf-f{background:#fff;border:2px solid var(--green-ink);padding:11px 14px}
+.bf-f .lbl{font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--green-dp)}
+.bf-f input,.bf-f select{width:100%;border:none;outline:none;background:transparent;font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:16px;color:var(--green-ink);padding:3px 0 0}
+.bf-cta{width:100%;margin-top:6px;background:var(--yellow);color:var(--green-ink);border:2px solid var(--green-ink);padding:15px;font-family:"Cuprum";font-size:13px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer}
+.bf-foot{display:flex;justify-content:space-between;margin-top:12px;font-size:11px;letter-spacing:0.04em;color:var(--green-dp);font-weight:600}
+
+/* FOOTER */
+.ft{background:var(--yellow);color:var(--green-ink);padding:48px 32px 24px}
+.ft-in{max-width:var(--max);margin:0 auto}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:2px solid var(--green-ink)}
+.ft h5{font-family:"Yeseva One",serif;font-style:italic;font-weight:700;font-size:17px;color:var(--green-ink);margin:0 0 12px}
+.ft p,.ft a{font-size:14px;margin:4px 0;color:var(--green-ink);font-weight:500}
+.ft a:hover{color:var(--green-dp);text-decoration:underline}
+.ft-bottom{padding-top:18px;display:grid;grid-template-columns:1fr 1fr;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-dp);font-weight:800}
+.ft-bottom .r{text-align:right}
+
+@media (max-width:1180px){
+  .hd-in{grid-template-columns:auto 1fr auto;gap:14px}
+  .hd nav,.hd-phone{display:none}
+}
+@media (max-width:1024px){
+  .hero h1{font-size:80px}
+  .hero-photo-row,.feats,.houses,.revs,.around,.faq-grid,.cta-in,.ft-grid{grid-template-columns:1fr 1fr}
+  .feat:nth-child(1){grid-column:span 2;grid-row:auto;min-height:340px}
+  .feat:nth-child(2),.feat:nth-child(3),.feat:nth-child(4),.feat:nth-child(5){grid-column:span 1}
+  .feat:nth-child(6){grid-column:span 2}
+  .houses{grid-template-columns:1fr 1fr}
+  .house:nth-child(2),.house:nth-child(4){border-right:none}
+  .house:nth-child(1),.house:nth-child(2){border-bottom:2px solid var(--green-ink)}
+  .revs{grid-template-columns:1fr 1fr}
+  .rev:nth-child(2),.rev:nth-child(4){border-right:none}
+  .rev:nth-child(1),.rev:nth-child(2){border-bottom:2px solid var(--green-ink)}
+  .segs{grid-template-columns:1fr 1fr}
+  .seg:nth-child(2),.seg:nth-child(4){border-right:none}
+  .seg:nth-child(1),.seg:nth-child(2){border-bottom:2px solid var(--green-ink)}
+  .trust-in{grid-template-columns:repeat(3,1fr) 2fr}
+  .around-img{border-right:none;border-bottom:2px solid var(--green-ink);aspect-ratio:5/3}
+  .faq-l-col{padding:40px 32px}.faq-r-col{padding:14px 32px}
+  .bf-in{padding:40px 32px}
+}
+@media (max-width:760px){
+  .hero h1{font-size:54px}
+  .hero-top{grid-template-columns:1fr;gap:6px}.hero-top .iss{text-align:left;justify-self:start}
+  .hero-photo-row,.feats,.houses,.revs,.segs,.trust-in,.faq-grid,.cta-in,.ft-grid,.around{grid-template-columns:1fr}
+  .feats > .feat{grid-column:auto !important;border-right:none;border-bottom:2px solid var(--green-ink)}
+  .houses > .house,.revs > .rev,.segs > .seg{border-right:none;border-bottom:2px solid var(--green-ink)}
+  .houses > .house:last-child,.revs > .rev:last-child,.segs > .seg:last-child{border-bottom:none}
+  .trust-in > div{padding:10px 0;border-left:none;border-top:1px solid rgba(244,196,48,0.4)}
+  .hero-bottom{grid-template-columns:1fr;gap:16px}.hero-cta{align-items:flex-start}
+  .s-h{grid-template-columns:1fr}.s-h .r{text-align:left}.s-h .num{font-size:48px}
+  .ft-bottom{grid-template-columns:1fr}.ft-bottom .r{text-align:left}
+}
+
+@media (max-width:760px){
+  .hero{height:auto !important;min-height:0 !important}
+  .hero > div{grid-template-columns:1fr !important}
+  .hero-photo-row{grid-template-columns:repeat(3,1fr) !important}
+  .hero h1{font-size:48px !important;line-height:0.92 !important}
+  .ft > div:nth-child(2){grid-template-columns:1fr !important;gap:24px !important;padding:32px 24px !important}
+  .ft > div:last-child{grid-template-columns:1fr !important;text-align:left !important}
+  .ft > div:last-child > div:last-child{text-align:left !important}
+  .houses{grid-template-columns:1fr !important}
+  .feats{grid-template-columns:1fr !important}
+  .feats > .feat{grid-column:auto !important;grid-row:auto !important;min-height:auto !important}
+  .revs{grid-template-columns:1fr !important}
+  .segs{grid-template-columns:1fr !important}
+  .faq-grid{grid-template-columns:1fr !important}
+  .cta-in{grid-template-columns:1fr !important}
+  .around{grid-template-columns:1fr !important}
+  .s-in{padding:48px 20px !important}
+  .s-h{grid-template-columns:1fr !important;gap:14px !important}
+  .s-h .num{font-size:48px !important}
+  .s-h .r{text-align:left !important}
+}
+/* mobile-header-fix */
+@media (max-width:640px){
+  .hd-in{padding:10px 14px;gap:10px}
+  .hd-logo span:last-child{font-size:16px !important}
+  .hd-logo svg{width:32px !important;height:32px !important}
+  .hd a.btn{padding:8px 12px !important;font-size:11px !important;letter-spacing:0.04em !important}
+}
+/* HERO photo slideshow (full-bleed crossfade) */
+.hero-slides{position:absolute;inset:0;z-index:0}
+.hero-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:0;animation:heroFade 24s infinite;will-change:opacity}
+.hero-slides img:nth-child(1){animation-delay:0s}
+.hero-slides img:nth-child(2){animation-delay:4s}
+.hero-slides img:nth-child(3){animation-delay:8s}
+.hero-slides img:nth-child(4){animation-delay:12s}
+.hero-slides img:nth-child(5){animation-delay:16s}
+.hero-slides img:nth-child(6){animation-delay:20s}
+@keyframes heroFade{0%{opacity:0}2%{opacity:1}15%{opacity:1}18%{opacity:0}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.hero-slides img{animation:none;opacity:0}.hero-slides img:nth-child(1){opacity:1}}
+/* МОБАЙЛ: фото — аккуратный баннер сверху (без зум-обрезки), текст ниже на зелёном */
+@media (max-width:760px){
+  .hero{min-height:0 !important}
+  .hero-slides{position:relative !important;inset:auto !important;width:100%;aspect-ratio:16/10}
+  .hero-slides img{object-position:center 50% !important}
+  .hero-scrim{display:none !important}
+  .hero-content{min-height:0 !important;padding:24px 18px 30px !important;background:var(--green-ink);gap:18px !important}
+  .hero-content > div:nth-child(2){grid-template-columns:1fr !important;gap:18px !important;align-items:start !important}
+  .hero-content > div:nth-child(3){grid-template-columns:1fr !important;gap:14px !important}
+}
+/* убрать плавающую кнопку-молнию брони (встроенная форма #book остаётся) */
+body [id^="znms-widget-floating"]{display:none !important;visibility:hidden !important;pointer-events:none !important}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd-in">
+    <a class="hd-logo" href="/" style="display:flex;align-items:center;gap:12px;color:var(--green-ink);text-decoration:none"><svg viewBox="0 0 100 100" width="40" height="40" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#5B8C44"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#FFFFFF"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#FFFFFF"/><circle cx="64" cy="28" r="14" fill="#FFFFFF"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#FFFFFF"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#FFFFFF"/></g></svg><span style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:22px;letter-spacing:-0.015em;line-height:1">Ёлкино-Перепёлкино</span></a>
+    <nav><a href="/chan/">Чан</a><a href="/banya/">Баня</a><a href="/pool/">Бассейн</a><a href="/foam-party/">Дискотека</a><a href="/fishing/">Рыбалка</a><a href="/events/">Мероприятия</a><a href="/blog/">Блог</a><a href="/plan/scene3d.html">3D-план</a></nav>
+    <a class="hd-phone" href="tel:+79051267668">+7 905 126-76-68</a>
+    <a class="btn" href="#book">Забронировать</a>
+  </div>
+</header>
+<!-- HERO -->
+<section class="hero" style="padding:0;border-bottom:2px solid var(--green-ink);background:var(--green-ink);color:#fff;position:relative;overflow:hidden;min-height:780px">
+  <div class="hero-slides" aria-hidden="true">
+    <img src="img/misha/1718100.webp" alt="Михаил, управляющий базой Ёлкино-Перепёлкино" style="object-position:center 55%" loading="eager" fetchpriority="high">
+    <img src="img/chan/girls_chan_group.webp" alt="Гости купаются в банном чане" style="object-position:center 50%">
+    <img src="img/skandinavsky/skandinavsky_1.webp" alt="Скандинавский дом на базе отдыха" style="object-position:center 50%">
+    <img src="img/chan/chan_misha_25.webp" alt="Банный чан с кинотеатром под открытым небом" style="object-position:center 50%">
+    <img src="img/polskiy/polskiy_3.webp" alt="Польский дом на базе отдыха" style="object-position:center 45%">
+    <img src="img/misha-fresh/blini_volga.webp" alt="Блины с видом на Волгу" style="object-position:center 55%">
+  </div>
+  <div class="hero-scrim" style="position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,44,24,0.45) 0%,rgba(14,44,24,0.22) 35%,rgba(14,44,24,0.78) 100%)"></div>
+  <div class="hero-content" style="position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:56px 32px 40px;min-height:780px;display:grid;grid-template-rows:auto 1fr auto;gap:32px">
+    <div style="display:grid;grid-template-columns:auto 1fr auto;gap:24px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:800;color:#fff">
+      <div>Семейный отдых · на Волге</div>
+      <div style="text-align:center;color:var(--yellow)">№ 16 · сезон 2026 · с 2010</div>
+      <div style="text-align:right">Дмитровка · 140 км</div>
+    </div>
+    <div style="align-self:center;display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:end">
+      <h1 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:clamp(64px,10vw,180px);line-height:0.86;letter-spacing:-0.028em;margin:0;color:#fff;text-wrap:balance">
+        Волга<br/><span style="font-style:normal;color:var(--yellow)">вместо</span><br/>Геленджика.
+      </h1>
+      <div style="padding-bottom:18px">
+        <div style="background:var(--yellow);color:var(--green-ink);padding:24px 26px;margin-bottom:14px">
+          <div style="font-family:'PT Mono',monospace;font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase">Цена-якорь</div>
+          <div style="font-family:'Yeseva One',serif;font-style:italic;font-size:44px;line-height:1;margin-top:6px">5 500 ₽</div>
+          <div style="font-size:12px;font-weight:600;margin-top:4px;color:var(--green-dp)">за дом за ночь, не за гостя</div>
+        </div>
+        <div style="padding:14px 20px;border:2px solid #fff;background:rgba(14,44,24,0.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--yellow)">9,8 / 10 · 46 отзывов</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.85);margin-top:4px;font-weight:500">mirturbaz.ru</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;padding-top:24px;border-top:1px solid rgba(255,255,255,0.3)">
+      <p style="font-family:'Cuprum',sans-serif;font-size:19px;line-height:1.55;color:rgba(255,255,255,0.92);margin:0;max-width:600px;font-weight:500">
+        Семейная база отдыха в сосновом бору на слиянии Хотчи и Волги. Дровяная баня, банный чан с кинотеатром, фермерская кухня. Два часа от Москвы — без М4-пробок.
+      </p>
+      <div style="display:flex;gap:10px">
+        <a class="btn btn--yellow btn--lg" href="#houses">Подобрать дом →</a>
+        <a class="btn btn--lg" style="background:transparent;color:#fff;border-color:#fff" href="#chan">Чан с кино</a>
+      </div>
+      <a class="btn btn--lg" href="/plan/scene3d.html" style="background:#fff;color:var(--green-ink);border-color:#fff;margin-top:6px;display:inline-flex;align-items:center;gap:8px;font-weight:800">🏡 3D-модель базы отдыха →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING (top, prominent) -->
+<section class="s" id="book" style="background:var(--green-ink);border-bottom:2px solid var(--green-ink);padding:32px 0">
+  <div style="max-width:760px;margin:0 auto;padding:0 20px">
+    <div class="bf-form" style="background:var(--paper);border:2px solid var(--green-ink);padding:24px 24px 18px">
+      <h2 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1;letter-spacing:-0.01em;margin:0 0 4px;color:var(--green-ink)">Забронировать дом</h2>
+      <div class="sub" style="font-size:14px;color:var(--green-dp);margin-bottom:16px;font-weight:600">Шахматка занятости, без комиссии. Подтверждение за час.</div>
+      <style>.znms-widget__module-form-block__btn.znms-widget__v-color8{background-color:#1E5631 !important}.znms-widget__module-form-block--dark-bg{background:#FAF7EE !important}</style>
+      <div id="znms-widget-1"></div>
+      <script src="//widget.bronirui-online.ru/js/app.js"></script>
+      <script>window.znmsWidget && window.znmsWidget.init('#znms-widget-1',{moduleId:4249,index:0,widget:{position:{top:'100px'},mobile:{absolute:false,position:{top:'100px'}}},button:{position:{bottom:'50px',left:'50px',right:'50px'}}})</script>
+      <div class="bf-foot" style="margin-top:14px"><span>Модуль «Бронируй Онлайн»</span><span>Без комиссии</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="trust-in">
+    <div><div class="v"><span class="y">9,8</span> / 10</div><div class="l">46 отзывов · mirturbaz</div></div>
+    <div><div class="v">140 км</div><div class="l">Дмитровка от МКАД</div></div>
+    <div><div class="v">с 2010</div><div class="l">Михаил · управляющий</div></div>
+    <div><div class="v">4 варианта размещения</div><div class="l">От пары до 12</div></div>
+    <div><div class="v"><span class="y">Чан</span> · баня</div><div class="l">Кинотеатр под звёздами</div></div>
+  </div>
+</section>
+
+<!-- SEGMENTS -->
+<section class="s">
+  <div class="s-in">
+    <div class="s-h">
+      <div class="num" style="display:flex;align-items:center;gap:16px"><svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#5B8C44"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#FFFFFF"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#FFFFFF"/><circle cx="64" cy="28" r="14" fill="#FFFFFF"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#FFFFFF"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#FFFFFF"/></g></svg><span>I</span></div>
+      <h2>Подберём <em class="y">формат</em><br/>под вашу поездку.</h2>
+      <div class="r">80% наших гостей — семьи с детьми. Но мы рады компаниям, парам и рыбакам.</div>
+    </div>
+    <div class="segs">
+      <a class="seg" href="#houses"><div class="seg-r">01.</div><h4>Семья с детьми</h4><div class="seg-t">Основной формат</div><p>Тёплый бассейн, детская площадка с песочницей, пенная дискотека, ручные кролики.</p></a>
+      <a class="seg" href="#houses"><div class="seg-r">02.</div><h4>Большая компания</h4><div class="seg-t">До 10 человек</div><p>Деревянный дом, длинный стол, печь, барбекю-беседка.</p></a>
+      <a class="seg" href="#houses"><div class="seg-r">03.</div><h4>Двое</h4><div class="seg-t">На выходные</div><p>Уютный скандинавский дом для пары или семьи 2+2. Большой подиум из дуба, утро под звуки соснового бора.</p></a>
+      <a class="seg" href="#houses"><div class="seg-r">04.</div><h4>Рыбакам</h4><div class="seg-t">Хотча и Волга</div><p>Лодки, удочки, хороший утренний клёв.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- BIG FEATURE -->
+<section class="bf-section" id="chan">
+  <div class="bf bf-split">
+    <img src="img/misha-fresh/chan_kino_pair.webp" alt="Михаил с женой в чане смотрят кино — Ёлкино-Перепёлкино">
+    <div class="bf-in">
+      <div class="bf-l">II · Главная фишка</div>
+      <h3>Чан с кино <em class="y">под звёздами</em>.</h3>
+      <p>Премиальный чан, ключевая вода, берёзовые дрова под ним. Перед вами большой экран. Нагреваем воду до +40 и включаем ваше любимое кино.</p>
+      <div class="bf-meta"><span>1,5 м в диаметре</span><span>До 8 человек</span><span>Сеанс 21:30</span></div>
+    </div>
+  </div>
+</section>
+
+
+<div style="display:flex;align-items:center;justify-content:center;gap:18px;padding:28px 32px;background:var(--yellow);border-bottom:2px solid var(--green-ink)">
+  <div style="flex:1;height:2px;background:var(--green-ink);max-width:340px"></div>
+  <svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#1E5631"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#F4C430"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#F4C430"/><circle cx="64" cy="28" r="14" fill="#F4C430"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#F4C430"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#F4C430"/></g></svg>
+  <div style="flex:1;height:2px;background:var(--green-ink);max-width:340px"></div>
+</div>
+
+<!-- FEATURES -->
+<section class="s">
+  <div class="s-in">
+    <div class="s-h">
+      <div class="num" style="display:flex;align-items:center;gap:16px"><svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#5B8C44"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#FFFFFF"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#FFFFFF"/><circle cx="64" cy="28" r="14" fill="#FFFFFF"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#FFFFFF"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#FFFFFF"/></g></svg><span>III</span></div>
+      <h2>Шесть <em class="y">домашних</em> вещей.</h2>
+      <div class="r">Каждая — не «услуга», а часть быта на даче.</div>
+    </div>
+    <div class="feats">
+      <article class="feat">
+        <div class="feat-img"><img src="img/banya/banya_1.webp" alt="Дровяная баня"></div>
+        <div class="feat-body"><div class="feat-l">01 · На дровах</div><h4>Русская баня с липовой парной</h4><p>Настоящая, не сауна. Дровяная печь, дубовые и берёзовые веники, ушат и тропа в купель. Парите сами — банщика можно пригласить заранее, по запросу.</p></div>
+      </article>
+      <article class="feat">
+        <div class="feat-img"><img src="img/ambient/donut_pool_20240602.webp" alt="Бассейн с надувными кругами"></div>
+        <div class="feat-body"><div class="feat-l">02 · Летом</div><h4>Бассейн в бору</h4><p>Открытый, с подогревом.</p></div>
+      </article>
+      <article class="feat">
+        <div class="feat-img"><img src="img/ambient/girl_foam_solo.webp" alt="Дети на пенной дискотеке"></div>
+        <div class="feat-body"><div class="feat-l">03 · Дети</div><h4>Пенная дискотека и игровая</h4><p>Пенная пушка по субботам, детская площадка с песочницей. Зверушки — в планах.</p></div>
+      </article>
+      <article class="feat">
+        <div class="feat-img"><img src="img/ambient/fishing_20230713.webp" alt="Рыбак с двумя карасями у пруда"></div>
+        <div class="feat-body"><div class="feat-l">04 · Бор</div><h4>Грибы и рыбалка</h4><p>Сосновый бор, хороший утренний клёв.</p></div>
+      </article>
+      <article class="feat">
+        <div class="feat-img"><img src="img/chan/girls_chan_toast.webp" alt="Шампанское на бортике — вечер в чане"></div>
+        <div class="feat-body"><div class="feat-l">05 · Тёплый релакс</div><h4>Чан с компанией</h4><p>Затопим к приезду. Шампанское на бортике, кино над водой, восемь человек.</p></div>
+      </article>
+      <article class="feat">
+        <div class="feat-img"><img src="img/misha-fresh/blini_breakfast.webp" alt="Блины со сметаной и горячим чаем"></div>
+        <div class="feat-body"><div class="feat-l">06 · Приносим завтрак в ваш дом</div><h4>Свежий завтрак</h4><p>Сырники, блины, оладушки, джем и варенье, ароматный кофе. 500 ₽/гость.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOUSES -->
+<section class="s" id="houses">
+  <div class="s-in">
+    <div class="s-h">
+      <div class="num" style="display:flex;align-items:center;gap:16px"><svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#F4C430"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#1E5631"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#1E5631"/><circle cx="64" cy="28" r="14" fill="#1E5631"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#1E5631"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#1E5631"/></g></svg><span>IV</span></div>
+      <h2>Четыре варианта размещения —<br/><em class="y">на разный размер</em>.</h2>
+      <div class="r">Каждый стоит отдельно — минимум 60 м между соседями. Свой мангал, своя веранда, свои дрова.</div>
+    </div>
+    <div class="houses">
+      <article class="house">
+        <a href="/houses/apartment/" class="house-img" style="display:block;text-decoration:none;color:inherit"><span class="house-num">01</span><img src="img/apartament/apartament_1.webp" alt="Семейные апартаменты"></a>
+        <div class="house-body">
+          <h3><a href="/houses/apartment/" style="color:inherit;text-decoration:none">Семейные апартаменты</a></h3>
+          <div class="house-tag">до 4 · 36 м² · с верандой</div>
+          <p>Семейные апартаменты для двоих, семьи 2+2 или небольшой компании. Кухня, душевая, веранда с видом на сосны. Универсальный формат — пара, семья или дружный небольшой коллектив.</p>
+          <div class="house-foot"><div class="house-price">от 5 500 ₽<small>/ночь</small></div><a class="house-cta" href="/houses/apartment/">Подробнее →</a></div>
+        </div>
+      </article>
+      <article class="house">
+        <a href="/houses/scandinavian/" class="house-img" style="display:block;text-decoration:none;color:inherit"><span class="house-num">02</span><img src="img/skandinavsky/skandinavsky_1.webp" alt="Скандинавский дом"></a>
+        <div class="house-body">
+          <h3><a href="/houses/scandinavian/" style="color:inherit;text-decoration:none">Скандинавский дом</a></h3>
+          <div class="house-tag">до 4 · 48 м² · отдельно</div>
+          <p>Уютный дом для пары или семьи 2+2. Большой подиум из дуба перед входом, окна на сосновый бор. Любят пары и небольшие семьи на выходные.</p>
+          <div class="house-foot"><div class="house-price">от 7 500 ₽<small>/ночь</small></div><a class="house-cta" href="/houses/scandinavian/">Подробнее →</a></div>
+        </div>
+      </article>
+      <article class="house">
+        <a href="/houses/polish/" class="house-img" style="display:block;text-decoration:none;color:inherit"><span class="house-num">03</span><img src="img/polskiy/polskiy_1_v2.webp" alt="Польский дом"></a>
+        <div class="house-body">
+          <h3><a href="/houses/polish/" style="color:inherit;text-decoration:none">Польский дом</a></h3>
+          <div class="house-tag">до 6 · 55 м² · 2 спальни</div>
+          <p>Просторный дом с двумя спальнями и кухней-гостиной. Окна на бор, мангал и стол с лавочками во дворе.</p>
+          <div class="house-foot"><div class="house-price">от 9 500 ₽<small>/ночь</small></div><a class="house-cta" href="/houses/polish/">Подробнее →</a></div>
+        </div>
+      </article>
+      <article class="house">
+        <a href="/houses/wooden/" class="house-img" style="display:block;text-decoration:none;color:inherit"><span class="house-num">04</span><img src="img/derevyanny/derevyanny_2.webp" alt="Деревянный дом"></a>
+        <div class="house-body">
+          <h3><a href="/houses/wooden/" style="color:inherit;text-decoration:none">Деревянный дом</a></h3>
+          <div class="house-tag">до 10 · 100 м² · 2 этажа</div>
+          <p>Главный дом базы. Брус, печь, длинный стол на десять. Берут на дни рождения и юбилеи.</p>
+          <div class="house-foot"><div class="house-price">от 12 500 ₽<small>/ночь</small></div><a class="house-cta" href="/houses/wooden/">Подробнее →</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="pull"><div style="position:absolute;top:24px;right:32px;opacity:0.14;pointer-events:none;z-index:1"><svg viewBox="0 0 100 100" width="160" height="160" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#1E5631"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#F4C430"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#F4C430"/><circle cx="64" cy="28" r="14" fill="#F4C430"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#F4C430"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#F4C430"/></g></svg></div><div style="position:absolute;bottom:24px;left:32px;opacity:0.14;pointer-events:none;z-index:1"><svg viewBox="0 0 100 100" width="120" height="120" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#1E5631"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#F4C430"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#F4C430"/><circle cx="64" cy="28" r="14" fill="#F4C430"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#F4C430"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#F4C430"/></g></svg></div>
+  <blockquote>Мы как к себе домой приехали. Как к себе на дачу. Так и сказали — <em>своих не считаем</em>.</blockquote>
+  <cite>— Анна и Сергей с дочкой · приехали в третий раз</cite>
+</section>
+
+<!-- AROUND -->
+<section class="s" id="around">
+  <div class="s-in">
+    <div class="s-h">
+      <div class="num" style="display:flex;align-items:center;gap:16px"><svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#5B8C44"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#FFFFFF"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#FFFFFF"/><circle cx="64" cy="28" r="14" fill="#FFFFFF"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#FFFFFF"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#FFFFFF"/></g></svg><span>V</span></div>
+      <h2>140 км от Москвы.<br/>За воротами — <em class="y">бор и Волга</em>.</h2>
+      <div class="r">Дмитровское шоссе до Кимр, поворот налево в Кочнево. Зимой регулярно чистим.</div>
+    </div>
+    <div class="around">
+      <div class="around-img"><img src="img/ambient/swing_beach_20230618.webp" alt="Качели у Волги летом"></div>
+      <ul class="around-list">
+        <li><div class="km">0,3 км</div><div><div class="nm">Берег Волги и Хотчи</div><div class="nt">Слияние двух рек, пляж, мостки.</div></div></li>
+        <li><div class="km">0,1 км</div><div><div class="nm">Сосновый бор</div><div class="nt">За воротами, ягоды и грибы.</div></div></li>
+        <li><div class="km">7 км</div><div><div class="nm">Музей Змея Горыныча</div><div class="nt">Усадьба в Дубровках — детский маршрут.</div></div></li>
+        <li><div class="km">38 км</div><div><div class="nm">Город Кимры</div><div class="nt">Купеческий модерн, набережная, рынок.</div></div></li>
+        <li><div class="km">140 км</div><div><div class="nm">МКАД</div><div class="nt">Дмитровка — два часа спокойной дороги.</div></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO BAND -->
+<section style="position:relative;padding:0;border-bottom:2px solid var(--green-ink);background:var(--green-ink);overflow:hidden">
+  <div style="position:relative;width:100%;aspect-ratio:16/9;max-height:74vh;overflow:hidden">
+    <video autoplay muted loop playsinline preload="metadata" poster="img/video/hero_poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <source src="img/video/hero_720p.mp4" type="video/mp4" media="(max-width:1024px)">
+      <source src="img/video/hero_1080p.mp4" type="video/mp4">
+    </video>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:40px 32px 24px;background:linear-gradient(0deg,rgba(14,44,24,0.78),transparent);z-index:2;pointer-events:none">
+      <div style="max-width:var(--max);margin:0 auto">
+        <div style="font-family:'PT Mono',monospace;font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--yellow)">Один день на базе</div>
+        <div style="font-family:'Yeseva One',serif;font-style:italic;font-size:clamp(24px,4vw,40px);line-height:1.05;color:#fff;margin-top:6px;text-shadow:0 2px 18px rgba(0,0,0,0.4)">Так это выглядит вживую</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICES -->
+<section class="s" id="prices">
+  <div class="s-in">
+    <div class="s-h">
+      <div class="num" style="display:flex;align-items:center;gap:16px"><svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#F4C430"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#1E5631"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#1E5631"/><circle cx="64" cy="28" r="14" fill="#1E5631"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#1E5631"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#1E5631"/></g></svg><span>VI</span></div>
+      <h2>Цена за дом —<br/><em class="y">не за человека</em>.</h2>
+      <div class="r">Бронируем на 4 месяца. Скидка 10% постоянным. Дети до 5 лет — бесплатно.</div>
+    </div>
+    <div class="prices-tg" id="ptg">
+      <button data-s="june" class="on">Июнь</button>
+      <button data-s="ja">Июль — август</button>
+    </div>
+    <table class="prices-tbl"><thead><tr><th style="width:46%">Дом</th><th>«От»</th><th>«До»</th><th></th></tr></thead><tbody id="pbody"></tbody></table>
+    <div class="prices-notes">
+      <div>Цены за дом за сутки, не за человека.</div>
+      <div>Бронируем на 4 месяца вперёд.</div>
+      <div>Скидка 10% — гостям, кто приехал к нам второй раз.</div>
+      <div>Дети до 5 лет — бесплатно.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="s" id="reviews">
+  <div class="s-in">
+    <div class="s-h">
+      <div class="num" style="display:flex;align-items:center;gap:16px"><svg viewBox="0 0 100 100" width="56" height="56" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#5B8C44"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#FFFFFF"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#FFFFFF"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#FFFFFF"/><circle cx="64" cy="28" r="14" fill="#FFFFFF"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#FFFFFF"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#FFFFFF"/></g></svg><span>VII</span></div>
+      <h2>Гости — <em class="y">про нас</em>.</h2>
+      <div class="r">9,8 / 10 · 46 отзывов на mirturbaz.ru</div>
+    </div>
+    <div class="revs">
+      <article class="rev"><div class="stars">★★★★★</div><p class="text">«Приехали в первый раз почти случайно — теперь возвращаемся каждый сезон. Дочка знает каждую тропинку. Чан с кино — отдельная история.»</p><div class="who"><div class="nm">Анна и Сергей</div><div class="wh">Москва · приехали трижды</div></div></article>
+      <article class="rev"><div class="stars">★★★★★</div><p class="text">«Выбирали между Геленджиком и Волгой — выбрали Волгу. И не пожалели: дети из бассейна не вылезали. Затопили чан лично к приезду.»</p><div class="who"><div class="nm">Семья Калашниковых</div><div class="wh">СПб · впервые</div></div></article>
+      <article class="rev"><div class="stars">★★★★★</div><p class="text">«Снимали на юбилей деревянный дом. Стол на десять, печь, баня к девяти, чан к одиннадцати. Утром принесли блины в плетёной корзине.»</p><div class="who"><div class="nm">Михаил</div><div class="wh">Тверь · деревянный дом</div></div></article>
+      <article class="rev"><div class="stars">★★★★★</div><p class="text">«Скандинавский дом — уютный, для двоих с детьми идеально. Подиум перед входом, сосны вокруг. Ужин в чане, кино. Лучшие два дня.»</p><div class="who"><div class="nm">Ольга и Антон</div><div class="wh">Москва · weekend</div></div></article>
+    </div>
+  </div>
+</section>
+
+
+<!-- GALLERY -->
+<section class="s" id="gallery" style="padding:0;border-bottom:2px solid var(--green-ink)">
+  <div style="padding:48px 32px 14px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--green-ink)">
+    <div>
+      <div style="font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--green-dp);font-weight:800;margin-bottom:8px">Галерея · лето на базе</div>
+      <h2 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:clamp(32px,4.2vw,56px);line-height:1;letter-spacing:-0.02em;margin:0;color:var(--green-ink)">Прокрути <em style="color:var(--green-dp);font-style:italic">→</em></h2>
+    </div>
+    <div style="font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-weight:700;align-self:flex-end">Сезон 2024–2026</div>
+  </div>
+  <div style="overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:20px 20px 28px;background:var(--paper)">
+    <div style="display:flex;gap:14px;width:max-content">
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;background:var(--green-ink);position:relative">
+        <img src="img/ambient/inshot_20240801.webp" alt="Пенная вечеринка с детьми" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Пенная дискотека</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/chan/girls_chan_group.webp" alt="Компания в чане" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Чан с компанией</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/inshot_20240628.webp" alt="Прыжок в бассейн" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Бассейн в бору</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/fishing_20230713.webp" alt="Рыбалка на пруду" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Хороший утренний клёв</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/bike_flowers_20240516.webp" alt="Велосипед с букетом" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Двор</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/foam_shiba_20240608.webp" alt="Пена и шиба" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Лето</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/unicorn_pool_20240831.webp" alt="Единорог в бассейне" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Бассейн</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/lake_birch_20230530.webp" alt="Берёза и пруд" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Природа</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/swing_beach_20230618.webp" alt="Качели у Волги" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Качели</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/girl_foam_solo.webp" alt="Девочка в пене" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Дискотека</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/chan/girls_chan_toast.webp" alt="Шампанское в чане" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Вечер</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/dad_pool_20240601.webp" alt="Папа с дочкой в бассейне" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Семья</figcaption>
+      </figure>
+      <figure style="flex:0 0 auto;width:min(82vw,420px);aspect-ratio:3/4;margin:0;scroll-snap-align:start;border:2px solid var(--green-ink);overflow:hidden;position:relative">
+        <img src="img/ambient/inshot_20240712.webp" alt="Дети и щенок" style="width:100%;height:100%;object-fit:cover" loading="lazy"/>
+        <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;background:rgba(14,44,24,0.7);padding:6px 10px;font-family:'PT Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase">Двор и животные</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FOAM -->
+<section class="s" style="padding:0;border-bottom:2px solid var(--green-ink)">
+  <div style="display:grid;grid-template-columns:1fr 1fr;align-items:stretch;border-top:2px solid var(--green-ink)">
+    <div style="background:var(--yellow);padding:56px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden">
+      <div style="position:absolute;top:24px;right:24px;opacity:0.18"><svg viewBox="0 0 100 100" width="140" height="140" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#1E5631"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#F4C430"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#F4C430"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#F4C430"/><circle cx="64" cy="28" r="14" fill="#F4C430"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#F4C430"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#F4C430"/></g></svg></div>
+      <div style="font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--green-dp);font-weight:800;margin-bottom:14px">Лето · по субботам</div>
+      <h3 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:clamp(40px,5vw,72px);line-height:0.94;letter-spacing:-0.024em;margin:0 0 22px;color:var(--green-ink);text-wrap:balance;position:relative">
+        Пенная<br/>дискотека.
+      </h3>
+      <p style="font-family:'Cuprum',sans-serif;font-size:18px;line-height:1.55;color:var(--green-ink);margin:0 0 16px;font-weight:500;max-width:480px;position:relative">
+        Каждую субботу вечером — пенная пушка, музыка, дети с визгом носятся по лужайке. Родители — рядом, с холодным лимонадом.
+      </p>
+      <div style="margin-top:14px;display:flex;gap:14px;flex-wrap:wrap;position:relative">
+        <span style="background:var(--green-ink);color:var(--yellow);padding:7px 12px;font-size:11px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase">Каждую субботу 18:00</span>
+        <span style="background:#fff;color:var(--green-ink);padding:7px 12px;border:1.5px solid var(--green-ink);font-size:11px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase">Без доплаты</span>
+      </div>
+    </div>
+    <div style="position:relative;min-height:480px;overflow:hidden">
+      <img src="img/ambient/foam_shiba_20240608.webp" alt="Пенная дискотека — лето на лужайке" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+    </div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="s" style="padding:0;position:relative;overflow:hidden;border-bottom:2px solid var(--green-ink);min-height:520px">
+  <img class="host-photo" src="img/host/misha_portrait.webp" alt="Михаил Зинин — управляющий базы" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 8%"/>
+  <div style="position:absolute;inset:0;background:linear-gradient(110deg,rgba(14,44,24,0.85) 0%,rgba(14,44,24,0.55) 45%,transparent 70%)"></div>
+  <div style="position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;color:#fff;min-height:520px">
+    <div>
+      <div style="font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:14px">Слово хозяина</div>
+      <h2 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:clamp(40px,5vw,76px);line-height:0.96;letter-spacing:-0.024em;margin:0 0 28px;color:#fff;text-wrap:balance">
+        «Здесь нет администраторов. Здесь хозяин — и вы.»
+      </h2>
+      <p style="font-family:'Cuprum',sans-serif;font-size:18px;line-height:1.55;color:rgba(255,255,255,0.92);margin:0 0 24px;font-weight:500;max-width:600px">
+        Я Михаил. С 2010 года всё на «Ёлкино-Перепёлкино» — печь, чан, баня, мостки, сад — делал своими руками. Гостей встречаю сам, провожаю сам, чай к утру приношу сам. Это не отель. Это дача — моя и ваша.
+      </p>
+      <div style="display:flex;align-items:center;gap:18px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.3)">
+        <div>
+          <div style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:22px;color:#fff">Михаил Зинин</div>
+          <div style="font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-top:2px">управляющий · с 2010</div>
+        </div>
+        <a href="tel:+79051267668" class="btn btn--yellow" style="margin-left:auto;font-family:'Cuprum',sans-serif">Позвонить лично →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-grid">
+    <div class="faq-l-col">
+      <div class="l">VIII · Часто спрашивают</div>
+      <h2>Вопросы.</h2>
+      <p>Не нашли ответ — позвоните или напишите. Отвечает Михаил, не чат-бот.</p>
+    </div>
+    <div class="faq-r-col">
+      <details class="faq-item"><summary>Можно с собакой?</summary><p>Можно с маленькой и средней. Берём 500 ₽/сутки за уборку. Большие — обсуждаем.</p></details>
+      <details class="faq-item"><summary>Дети до года заезжают?</summary><p>Да. Бесплатно даём кроватку, стул, ванночку. Предупредите заранее.</p></details>
+      <details class="faq-item"><summary>Когда лучше приезжать?</summary><p>Лето — бассейн. Зима — баня и чан со снегом. Сезон круглый.</p></details>
+      <details class="faq-item"><summary>Есть ли мангал и дрова?</summary><p>У каждого дома свой мангал.</p></details>
+      <details class="faq-item"><summary>Как с продуктами?</summary><p>Можно своё или заказать у нас — фермерское в плетёной корзине.</p></details>
+      <details class="faq-item"><summary>Можно отменить бронь?</summary><p>За 7 дней — полностью. За 3 дня — половина. В день — переносим.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact"><div style="position:absolute;top:32px;right:32px;opacity:0.85;z-index:3;pointer-events:none"><svg viewBox="0 0 100 100" width="110" height="110" aria-hidden="true" style="flex-shrink:0;display:block"><circle cx="50" cy="50" r="48" fill="#F4C430"/><g transform="translate(50.00 11.00) rotate(0)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(77.58 22.42) rotate(45)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(89.00 50.00) rotate(90)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(77.58 77.58) rotate(135)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(50.00 89.00) rotate(180)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(22.42 77.58) rotate(225)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(11.00 50.00) rotate(270)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(22.42 22.42) rotate(315)"><path d="M 0 -7 L 3.8 3 L 2 3 L 3.8 7.5 L -3.8 7.5 L -2 3 L -3.8 3 Z" fill="#1E5631"/></g><g transform="translate(18 24) scale(0.6)"><ellipse cx="48" cy="58" rx="34" ry="20" fill="#1E5631"/><path d="M 50 36 Q 58 50 42 54 Q 58 54 66 44 Z" fill="#1E5631"/><circle cx="64" cy="28" r="14" fill="#1E5631"/><path d="M 76 27 L 86 28.5 L 76 31 Z" fill="#1E5631"/><path d="M 80 50 L 94 38 L 88 52 Z" fill="#1E5631"/></g></svg></div>
+  <img class="cta-bg" src="img/ambient/unicorn_pool_20240831.webp" alt="">
+  <div class="cta-in">
+    <div>
+      <div class="bf-l" style="color:var(--yellow)">IX · Готовы приехать?</div>
+      <h2>Приедете?<br/><em class="y">Затопим к шести.</em></h2>
+      <p>Свяжитесь — расскажем про даты, подберём дом, забронируем без комиссии. Михаил · управляющий на связи в Telegram и по телефону до позднего вечера.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn--yellow btn--lg" href="tel:+79051267668">Позвонить хозяину →</a>
+        <a class="btn btn--lg" style="background:transparent;color:#fff;border-color:var(--yellow)" href="https://telegram.me/elkino_perepelkino">Telegram</a>
+      </div>
+    </div>
+    <div class="bf-form" style="padding:24px">
+      <h3 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:24px;letter-spacing:-0.01em;margin:0 0 4px;color:var(--green-ink)">Бронируйте без комиссии</h3>
+      <div class="sub" style="font-size:13px;color:var(--green-dp);margin-bottom:16px;font-weight:600">Выбор дат и шахматка занятости — в форме бронирования наверху страницы. Остались вопросы — звоните или пишите, Михаил на связи.</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a class="btn btn--yellow btn--lg" href="#book">Перейти к бронированию ↑</a>
+        <a class="btn btn--lg" style="background:var(--green-ink);color:#fff" href="tel:+79051267668">+7 905 126-76-68</a>
+        <a class="btn btn--lg" style="background:transparent;color:var(--green-ink);border-color:var(--green-ink)" href="https://telegram.me/elkino_perepelkino">Telegram</a>
+      </div>
+      <div class="bf-foot" style="margin-top:16px"><span>Михаил · управляющий</span><span>Без комиссии</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft" style="background:var(--green-ink);color:#fff;padding:40px 32px 24px;border-top:0">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:24px;padding-bottom:24px;border-bottom:1px solid rgba(244,196,48,0.25)">
+
+      <div>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:0 0 10px">Дома</h5>
+        <a href="/houses/" style="font-size:13px;color:rgba(255,255,255,0.85);display:block;margin:3px 0;text-decoration:none">Все 4 варианта</a>
+        <a href="/houses/apartment/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Апартаменты</a>
+        <a href="/houses/scandinavian/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Скандинавский</a>
+        <a href="/houses/polish/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Польский</a>
+        <a href="/houses/wooden/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Деревянный</a>
+      </div>
+
+      <div>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:0 0 10px">Фишки</h5>
+        <a href="/chan/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Чан с кино</a>
+        <a href="/banya/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Дровяная баня</a>
+        <a href="/pool/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Бассейн</a>
+        <a href="/foam-party/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Пенная дискотека</a>
+        <a href="/fishing/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Рыбалка</a>
+        <a href="/playground/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Игровая площадка</a>
+        <a href="/cinema/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Кино на улице</a>
+        <a href="/bbq/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Барбекю</a>
+        <a href="/bikes/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Велосипеды</a>
+        <a href="/sup-boat/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">SUP и лодки</a>
+        <a href="/rabbits-zoo/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Зверюшки</a>
+      </div>
+
+      <div>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:0 0 10px">Мероприятия</h5>
+        <a href="/events/" style="font-size:13px;color:rgba(255,255,255,0.85);display:block;margin:3px 0;text-decoration:none">Все события</a>
+        <a href="/events/wedding/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Свадьба</a>
+        <a href="/events/birthday/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">День рождения</a>
+        <a href="/events/anniversary/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Юбилей</a>
+        <a href="/events/corporate/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Корпоратив</a>
+        <a href="/events/new-year-corporate/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">НГ корпоратив</a>
+        <a href="/events/graduation/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Выпускной</a>
+        <a href="/events/family-reunion/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Семейная встреча</a>
+        <a href="/events/retreat/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Ретрит</a>
+        <a href="/events/bachelorette/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Девичник</a>
+        <a href="/events/bachelor/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Мальчишник</a>
+        <a href="/events/photoshoot/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Фотосессия</a>
+        <a href="/events/buyout/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Выкуп базы</a>
+      </div>
+
+      <div>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:0 0 10px">Сезоны</h5>
+        <a href="/summer/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Лето</a>
+        <a href="/winter/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Зима</a>
+        <a href="/new-year/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Новый год</a>
+        <a href="/may-holidays/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Майские</a>
+        <a href="/august/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Август</a>
+        <a href="/autumn/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Осень</a>
+        <a href="/spring/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Весна</a>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:14px 0 10px">Откуда</h5>
+        <a href="/from-moscow/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Из Москвы</a>
+        <a href="/from-spb/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Из СПб</a>
+        <a href="/from-tver/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Из Твери</a>
+        <a href="/from-dmitrov/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Из Дмитрова</a>
+        <a href="/from-dubna/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Из Дубны</a>
+      </div>
+
+      <div>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:0 0 10px">Вокруг</h5>
+        <a href="/vokrug/" style="font-size:13px;color:rgba(255,255,255,0.85);display:block;margin:3px 0;text-decoration:none">Что посмотреть</a>
+        <a href="/vokrug/muzey-zmeya-gorynycha/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Музей Гадов</a>
+        <a href="/vokrug/kimry/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Кимры</a>
+        <a href="/vokrug/kalyazin/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Калязин</a>
+        <a href="/vokrug/belyy-gorodok/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Белый Городок</a>
+        <a href="/vokrug/dubna/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Дубна</a>
+        <a href="/vokrug/uglich/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Углич</a>
+        <a href="/location/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Где база</a>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:14px 0 10px">Блог</h5>
+        <a href="/blog/" style="font-size:13px;color:rgba(255,255,255,0.85);display:block;margin:3px 0;text-decoration:none">Все статьи</a>
+        <a href="/blog/what-is-chan/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Что такое чан</a>
+        <a href="/blog/how-to-fire-banya/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Как затопить баню</a>
+        <a href="/blog/weekend-from-moscow/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Куда из Москвы</a>
+        <a href="/blog/history-of-place/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">История места</a>
+      </div>
+
+      <div>
+        <h5 style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);margin:0 0 10px">Сервис</h5>
+        <a href="/prices/" style="font-size:13px;color:rgba(255,255,255,0.85);display:block;margin:3px 0;text-decoration:none">Цены</a>
+        <a href="/book/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Бронь</a>
+        <a href="/availability/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Календарь</a>
+        <a href="/gift-cards/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Сертификаты</a>
+        <a href="/contacts/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Контакты</a>
+        <a href="/how-to-get-there/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Как добраться</a>
+        <a href="/about/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">О Михаиле</a>
+        <a href="/reviews/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Отзывы</a>
+        <a href="/gallery/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Галерея</a>
+        <a href="/video/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Видео</a>
+        <a href="/faq/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">FAQ</a>
+        <a href="/alisa/" style="font-size:13px;color:rgba(255,255,255,0.78);display:block;margin:3px 0;text-decoration:none">Голосовой поиск</a>
+        <a href="/sitemap-html/" style="font-size:13px;color:rgba(255,255,255,0.85);display:block;margin:3px 0;text-decoration:none"><strong>Карта сайта</strong></a>
+      </div>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;padding-top:24px;align-items:start">
+      <div>
+        <div style="font-family:'Yeseva One',serif;font-style:italic;font-weight:700;font-size:22px;color:#fff;margin-bottom:8px">Ёлкино-Перепёлкино</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.7);margin:0;line-height:1.5">Семейная база отдыха на слиянии Хотчи и Волги. Чан с кино, дровяная баня, фермерская кухня. Михаил, управляющий с 2010 года.</p>
+      </div>
+      <div>
+        <div style="font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);font-weight:800;margin-bottom:6px">Связь</div>
+        <a href="tel:+79051267668" style="font-family:'Yeseva One',serif;font-style:italic;font-size:22px;color:#fff;display:block;text-decoration:none">+7 905 126-76-68</a>
+        <a href="https://telegram.me/elkino_perepelkino" style="font-size:14px;color:rgba(255,255,255,0.78);display:block;margin-top:6px;text-decoration:none">@elkino_perepelkino</a>
+        <a href="mailto:mik.zinin@yandex.ru" style="font-size:14px;color:rgba(255,255,255,0.78);display:block;text-decoration:none">mik.zinin@yandex.ru</a>
+      </div>
+      <div>
+        <div style="font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);font-weight:800;margin-bottom:6px">Где мы</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.78);margin:0;line-height:1.5">Тверская обл., Кимрский р-н<br/>деревня Кочнево<br/>140 км · Дмитровка</p>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:18px;margin-top:18px;border-top:1px solid rgba(244,196,48,0.2);font-family:'PT Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,196,48,0.7)">
+      <span>« Ёлкино-Перепёлкино · 2026</span>
+      <span><a href="/policy/" style="color:rgba(244,196,48,0.7);text-decoration:none">Правила</a> · <a href="/policy/privacy/" style="color:rgba(244,196,48,0.7);text-decoration:none">Privacy</a> · <a href="/policy/cookies/" style="color:rgba(244,196,48,0.7);text-decoration:none">Cookies</a></span>
+      <span>Сезон 2026 · Ждём в гости</span>
+    </div>
+  </div>
+</footer>
+<style>
+@media (max-width:1024px){
+  footer.ft > div > div:first-child{grid-template-columns:1fr 1fr 1fr !important}
+}
+@media (max-width:640px){
+  footer.ft > div > div:first-child{grid-template-columns:1fr 1fr !important}
+  footer.ft > div > div:nth-child(2){grid-template-columns:1fr !important}
+}
+</style>
+
+<script>
+const P={june:[
+  {n:'Семейные апартаменты',t:'до 4 · 36 м²',f:'5 500',to:'6 500'},
+  {n:'Скандинавский дом',t:'до 4 · 48 м²',f:'7 500',to:'9 500'},
+  {n:'Польский дом',t:'до 6 · 55 м²',f:'9 500',to:'10 000'},
+  {n:'Деревянный дом',t:'до 10 · 100 м²',f:'12 500',to:'15 000'}],
+ja:[
+  {n:'Семейные апартаменты',t:'до 4 · 36 м²',f:'6 500',to:'8 500'},
+  {n:'Скандинавский дом',t:'до 4 · 48 м²',f:'8 500',to:'11 000'},
+  {n:'Польский дом',t:'до 6 · 55 м²',f:'10 000',to:'12 500'},
+  {n:'Деревянный дом',t:'до 10 · 100 м²',f:'15 000',to:'16 500'}]};
+function rp(s){document.getElementById('pbody').innerHTML=P[s].map(r=>`<tr><td class="nm">${r.n}<small>${r.t}</small></td><td class="pv">${r.f}<small>₽</small></td><td class="pv">${r.to}<small>₽</small></td><td style="text-align:right"><a href="#book" style="background:var(--green-ink);color:var(--yellow);padding:8px 12px;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;display:inline-block">Выбрать</a></td></tr>`).join('')}
+rp('june');document.getElementById('ptg').addEventListener('click',e=>{const b=e.target.closest('button[data-s]');if(!b)return;document.querySelectorAll('#ptg button').forEach(x=>x.classList.toggle('on',x===b));rp(b.dataset.s)});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}}));
+</script>
+  <script src="/hermes-widget.js" defer></script>
+  <script src="/nav-mobile.js" defer></script>
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})
+(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+ym(95602086,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/95602086" style="position:absolute;left:-9999px" alt=""></div></noscript>
+</body>
+</html>
