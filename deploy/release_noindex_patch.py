@@ -18,7 +18,7 @@ import argparse, os, re, sys
 NOINDEX_RE = re.compile(r'\n?\s*<meta name="(?:robots|googlebot|yandex)" content="noindex,nofollow"\s*/?>')
 SSLIP = "https://elki-f.185-202-239-165.sslip.io"
 PROD = "https://elkiperepelki.ru"
-SERVICE_NOINDEX = {"vendomat.html", os.path.join("plan", "plan.html"), os.path.join("plan", "scene3d.html")}
+SERVICE_NOINDEX = {"vendomat.html", "404.html", os.path.join("plan", "plan.html"), os.path.join("plan", "scene3d.html")}
 
 ROBOTS = """User-agent: *
 Allow: /
